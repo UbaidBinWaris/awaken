@@ -1,0 +1,3637 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "chatId": "={{ $('Code').item.json.chatId }}",
+        "text": "=\"Here is your generated prayer:\n\n{{ $('Code4').item.json.cleanedText }}",
+        "replyMarkup": "inlineKeyboard",
+        "inlineKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "Accept",
+                    "additionalFields": {
+                      "callback_data": "Accept"
+                    }
+                  },
+                  {
+                    "text": "Revise",
+                    "additionalFields": {
+                      "callback_data": "Revise"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        176,
+        -848
+      ],
+      "id": "d9ad8635-28e3-4d0a-aff2-c6861ddc6ceb",
+      "name": "Telegram",
+      "webhookId": "0c4614d0-7189-44b6-a4c4-3297c8a75baa",
+      "credentials": {
+        "telegramApi": {
+          "id": "QG2tqak04RzYOecM",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "47c9e2c4-a6f0-4711-8339-8618f6d368c1",
+              "leftValue": "={{ $('Telegram Trigger').item.json.message }}",
+              "rightValue": "={{ $json.message }}",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "aea14d83-770f-40cd-93dd-78b84ba0c08d",
+              "leftValue": "={{ $json.data }}",
+              "rightValue": "Revise",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -1104,
+        -496
+      ],
+      "id": "c997a727-3652-4bc0-8d0e-1a373c68de29",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Rola i styl:\n Napisz modlitwę w pierwszej osobie (ja ↔ Źródło), prostym, zrozumiałym językiem, krótkimi wersami.\n Zawsze zwracaj się do: „Najczystszego Źródła Światła i Miłości”.\n Ton: spokojny, pokorny, pewny, bez patosu.\n Unikaj słowa „łaska”; używaj: światło, prowadzenie, błogosławieństwo, ochrona, zaufanie.\n Długość: ~40–60 słów (czytanie 15–60 s). Każdy wers w nowej linii.\nKotwice (mają się pojawić naturalnie):\n„Oddaję to, co nie jest moje / co mnie obciąża”.\n\n\n„Ufam Twojemu prowadzeniu i perfekcyjnemu timingowi”.\n\n\n„Proszę o ochronę” (bez używania frazy „pieczęć światła”).\n\n\n(Opcjonalnie, gdy pasuje tematycznie) jedno zdanie pewności: „Wiem, że dobro i tak  zwycięży / to już się dzieje.” Pokaż mi jak ja mogę być pomocny innym. Jak mogę być pomocny światłu i miłości. Jak mogę odegrać moją role\n\n\nWdzięczność na końcu: 1–2 wersy „Dziękuję…”.\n\n\nObrazy (max 1–2, proste):\n światło, oddech, \n\nStruktura:\nWezwanie: „Najczystsze Źródło Światła i Miłości,”\n\n\n2–4 konkretne prośby związane z {TOPIK} („proszę o… / niech… / pomóż mi…”)\n\n\nKrótki obraz prowadzenia (światło/oddech/) porządkujący serce i decyzje\n\n\nOddanie + zaufanie + prośba o ochronę (+ opcjonalnie zdanie pewności, jeśli pasuje do tematu)\n\n\nWdzięczność (2–3 wersy) + „Amen.” / „ Niech tak się stanie.”\n\n\nGeneruj teraz:\nTOPIK: {{ $('Code').item.json.text }}\n\n\nEMOJI: {TAK/NIE — max 1 subtelne}\n",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        -768,
+        -864
+      ],
+      "id": "48671c67-6b8a-44dc-85c2-b8bee9796086",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -768,
+        -640
+      ],
+      "id": "a853d8e1-f49c-425d-a13a-ef00a7b42a9c",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "5GV805zhaCuBmSjp",
+          "name": "New Key"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1ygP78jhkxv7p18dKCjtvuH8Z__Dw6outclH7OvfCuw8",
+          "mode": "list",
+          "cachedResultName": "AWAKEN - GixiAI",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ygP78jhkxv7p18dKCjtvuH8Z__Dw6outclH7OvfCuw8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 344125279,
+          "mode": "list",
+          "cachedResultName": "Gixiai-content-data",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ygP78jhkxv7p18dKCjtvuH8Z__Dw6outclH7OvfCuw8/edit#gid=344125279"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "chatID": "={{ $('Code').item.json.chatId }}",
+            "text": "={{ $('Code').item.json.text }}",
+            "messageID": "={{ $('Code').item.json.message_id }}",
+            "AIagentResponce": "={{ $json.cleanedText }}",
+            "calback": "={{ $('Code').item.json.data }}"
+          },
+          "matchingColumns": [
+            "output"
+          ],
+          "schema": [
+            {
+              "id": "chatID",
+              "displayName": "chatID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "messageID",
+              "displayName": "messageID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "text",
+              "displayName": "text",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "AIagentResponce",
+              "displayName": "AIagentResponce",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "calback",
+              "displayName": "calback",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        -64,
+        -848
+      ],
+      "id": "8a8e6fe1-2b21-46a5-a287-0bb40fb538b4",
+      "name": "Google Sheets",
+      "alwaysOutputData": false,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "7qtlUMiyrLX33NYW",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Code').item.json.chatId }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -640,
+        -640
+      ],
+      "id": "f1352e39-3212-4a88-bb0e-ae8e5dd6ca1e",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "jsCode": "let chatId;\nlet text;\nlet data;\nlet message_id;\n\nif ($('Telegram Trigger').first().json.message) {\n  // User sent a normal message\n  chatId = $input.first().json.message.chat.id\n  text = $input.first().json.message.text\n  message_id = $input.first().json.message.message_id\n} else if ($input.first().json.callback_query) {\n  // User clicked a button\n  chatId = $input.first().json.callback_query.message.chat.id\n  data =  $input.first().json.callback_query.data // \"Accept\" or \"Revise\"\n}\n\nreturn [{\n  json: {\n    chatId,\n    text,\n    message_id,\n    data\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1376,
+        -496
+      ],
+      "id": "0b0cefe3-92fd-465b-a32b-b122bffea514",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=translate into english \njust translate no emoji just raw text, nospecial character is use\nuse  '...' insted of /n and line spaceing  or .\n\n{{ $json.text }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        2752,
+        -560
+      ],
+      "id": "a68a52d9-2547-4f53-bbc9-a03454e49e25",
+      "name": "AI Agent1"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        2736,
+        -368
+      ],
+      "id": "ff39dd42-37d8-4fee-b90f-1c792759bf04",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "5GV805zhaCuBmSjp",
+          "name": "New Key"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "let chatId;\nlet text;\nlet data;\nlet message_id;\n\nif ($input.first().json.ok) {\n  // User sent a normal message\n  chatId = $('AI Agent').first().json.output;\n  text = $input.first().json.result.text;\n  message_id = $input.first().json.result.message_id;\n} else if ($input.first().json.data == \"Accept\") {\n  // User clicked a button\n  chatId = $input.first().json.chatId\n  data =  $input.first().json.data // \"Accept\" or \"Revise\"\n}\n\nreturn [{\n  json: {\n    chatId,\n    text,\n    message_id,\n    data\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        400,
+        -816
+      ],
+      "id": "2a58a1a5-ab20-467c-bc18-9dae89d19b1d",
+      "name": "Code1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "150ac6f7-d05c-4b98-82c3-fded5554a3de",
+              "leftValue": "={{ $json.data }}",
+              "rightValue": "Accept",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1008,
+        -528
+      ],
+      "id": "4b8d9b75-187e-4e85-a458-83d71741c186",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=translate into chines\njust translate no line spacing no emoji just raw text\nuse  '...' insted of /n and line spaceing  or .\n\n{{ $json.text }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        2816,
+        -880
+      ],
+      "id": "fc4b04fa-b8eb-402b-a6be-8c07d5af6a03",
+      "name": "AI Agent2"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        2816,
+        -720
+      ],
+      "id": "5610db5f-4b34-4c1a-9002-c463edde26b3",
+      "name": "OpenAI Chat Model2",
+      "credentials": {
+        "openAiApi": {
+          "id": "5GV805zhaCuBmSjp",
+          "name": "New Key"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Pobierz output AI z poprzedniego węzła\nlet aiOutput = $('Telegram Trigger').first().json.callback_query.message.text;\n\n// Obsługa błędów: sprawdź, czy output istnieje\nif (!aiOutput || aiOutput.trim() === '') {\n  throw new Error('Output AI jest pusty. Nie można wygenerować audio.');\n}\n\n// Podziel tekst na linie\nlet lines = aiOutput.split('\\n');\n\n// Usuń pierwszą linię, jeśli zawiera \"Here is your generated prayer:\"\nif (lines[0].includes('Here is your generated prayer:')) {\n  lines.shift();\n}\n\n// Usuń ostatnią linię, jeśli zawiera \"This message was sent automatically with n8n\"\nif (lines[lines.length - 1].includes('This message was sent automatically with n8n')) {\n  lines.pop();\n}\n\n// Połącz linie, zastępując nowe linie trzema kropkami\nlet cleanedOutput = lines.join('...').replace(/\\s+/g, ' ').trim();\n\n// Zwróć obiekt dla węzła HTTP Request\nreturn [\n  {\n    json: {\n      text: cleanedOutput, // oczyszczony tekst z \"...\"\n      model_id: \"eleven_flash_v2\",\n      voice_settings: {\n        stability: 0.5,\n        similarity_boost: 0.75\n      }\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2176,
+        -928
+      ],
+      "id": "67e7f2e9-68b9-4fbb-bc4a-56d29b6f01c3",
+      "name": "Code2"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.elevenlabs.io/v1/text-to-speech/2EiwWnXFnvU5JabPnv8n",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "xi-api-key",
+              "value": "sk_8334a0a79b0f3a3306007cfbd46f6656adfd5c8b5f171a15"
+            },
+            {}
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"text\": \"{{ $json.output }}\",\n  \"model_id\": \"eleven_flash_v2\",\n  \"voice_settings\": {\n    \"stability\": 0.5,\n    \"similarity_boost\": 0.75\n  }\n}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "id": "c3089af3-e8f7-4ca4-953b-1cfb59b9873b",
+      "name": "Generate Audio (Chines)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3280,
+        -864
+      ]
+    },
+    {
+      "parameters": {
+        "name": "polish.mp3",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "={{ $('Create Audio Folder').first().json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        3872,
+        -1200
+      ],
+      "id": "64d37174-9e3c-403d-906a-8950d12b01e8",
+      "name": "Google Drive2",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "0pB0M8kcz3zGIDQC",
+          "name": "przebudzonezdrowie"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "Chines.mp3",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "={{ $('Create Audio Folder').first().json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        3904,
+        -960
+      ],
+      "id": "29422e5c-447a-4c0d-969c-8952407efc0c",
+      "name": "Google Drive3",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "0pB0M8kcz3zGIDQC",
+          "name": "przebudzonezdrowie"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "English.mp3",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "={{ $('Create Audio Folder').first().json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        3968,
+        -768
+      ],
+      "id": "9940b827-72b2-461f-9ddd-573fdca67e3f",
+      "name": "Google Drive4",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "0pB0M8kcz3zGIDQC",
+          "name": "przebudzonezdrowie"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1ygP78jhkxv7p18dKCjtvuH8Z__Dw6outclH7OvfCuw8",
+          "mode": "list",
+          "cachedResultName": "AWAKEN - GixiAI",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ygP78jhkxv7p18dKCjtvuH8Z__Dw6outclH7OvfCuw8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1754972574,
+          "mode": "list",
+          "cachedResultName": "audio-files",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ygP78jhkxv7p18dKCjtvuH8Z__Dw6outclH7OvfCuw8/edit#gid=1754972574"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Polish-audio-preview": "={{ $json['Polish-audio-preview'] }}",
+            "Polish-audio-download": "=",
+            "Polish-Content": "=",
+            "Chines-Content": "=",
+            "Chines-audio-preview": "=",
+            "Chines-audio-download": "=",
+            "English-Content": "={{ $json['English-Content'] }}",
+            "English-audio-preview": "={{ $json['English-audio-preview'] }}",
+            "English-audio-download": "={{ $json['English-audio-download'] }}",
+            "MessageId": "={{ $json.MessageId }}",
+            "Polish-Subtitles": "=",
+            "Chines-Subtitles": "=",
+            "English-Subtitles": "={{ $json['English-Subtitles'] }}",
+            "ChatId": "={{ $('Code').first().json.chatId }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "ChatId",
+              "displayName": "ChatId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "MessageId",
+              "displayName": "MessageId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Polish-Content",
+              "displayName": "Polish-Content",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Polish-audio-preview",
+              "displayName": "Polish-audio-preview",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Polish-audio-download",
+              "displayName": "Polish-audio-download",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Polish-Subtitles",
+              "displayName": "Polish-Subtitles",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Chines-Content",
+              "displayName": "Chines-Content",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Chines-audio-preview",
+              "displayName": "Chines-audio-preview",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Chines-audio-download",
+              "displayName": "Chines-audio-download",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Chines-Subtitles",
+              "displayName": "Chines-Subtitles",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "English-Content",
+              "displayName": "English-Content",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "English-audio-preview",
+              "displayName": "English-audio-preview",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "English-audio-download",
+              "displayName": "English-audio-download",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "English-Subtitles",
+              "displayName": "English-Subtitles",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        5536,
+        -720
+      ],
+      "id": "fb6a0187-53a0-4039-9a81-ee69efb3ac60",
+      "name": "Google Sheets1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "7qtlUMiyrLX33NYW",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message",
+          "callback_query"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1664,
+        -576
+      ],
+      "id": "d2e5dd66-7be8-441d-9332-356e3462d12e",
+      "name": "Telegram Trigger",
+      "webhookId": "d380c1dc-4e2b-4794-a38d-0c9f8a481d23",
+      "credentials": {
+        "telegramApi": {
+          "id": "QG2tqak04RzYOecM",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "numberInputs": 3
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        4432,
+        -1088
+      ],
+      "id": "ec2ab981-4580-45f7-97c9-63cc4b24ff5b",
+      "name": "Merge2"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Fetch outputs from previous nodes\nconst message_id = $('Create Audio Folder').first().json.name;\n\n\n\nconst english_content = $('Generate Audio (English)').first().json.output;\nconst english_audio_preview = $('Google Drive4').first().json.webViewLink;\nconst english_audio_download = $('Google Drive4').first().json.webContentLink;\n\n\n// Return data to be appended in Google Sheets\nreturn [\n  {\n    json: {\n      \"MessageId\": message_id,\n      \"English-Content\": english_content,\n      \"English-audio-preview\": english_audio_preview,\n      \"English-audio-download\": english_audio_download\n    }\n  }\n]"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4560,
+        -864
+      ],
+      "id": "a0e87a29-98fa-4307-a979-ecc0cc11753d",
+      "name": "Code3"
+    },
+    {
+      "parameters": {
+        "jsCode": "const transcription = $json; // English transcription from previous node\n\n// Helper to format time\nfunction formatTime(seconds) {\n  const date = new Date(null);\n  date.setSeconds(seconds);\n  const ms = Math.floor((seconds % 1) * 1000);\n  return date.toISOString().substr(11, 8) + ',' + ms.toString().padStart(3, '0');\n}\n\nconst words = transcription.words.filter(w => w.type === 'word');\nif (!words.length) throw new Error(\"No words in transcription\");\n\nlet srt = '';\nlet counter = 1;\nconst maxWordsPerBlock = 5;\n\nfor (let i = 0; i < words.length; i += maxWordsPerBlock) {\n  const blockWords = words.slice(i, i + maxWordsPerBlock);\n  const start = formatTime(blockWords[0].start);\n  const end = formatTime(blockWords[blockWords.length - 1].end);\n  srt += `${counter}\\n${start} --> ${end}\\n${blockWords.map(w => w.text).join(' ')}\\n\\n`;\n  counter++;\n}\n\nreturn [\n  {\n    binary: {\n      data: {\n        data: Buffer.from(srt),\n        mimeType: 'application/x-subrip',\n        fileName: 'English.srt'\n      }\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3888,
+        -96
+      ],
+      "id": "c0b35231-3c0d-460f-88e1-ff46491416d2",
+      "name": "Code7"
+    },
+    {
+      "parameters": {
+        "numberInputs": 3
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        4672,
+        -432
+      ],
+      "id": "9eb569ed-c024-40c0-9563-9265ad4c95ce",
+      "name": "Merge6"
+    },
+    {
+      "parameters": {
+        "jsCode": "const transcription = $json; // Chinese transcription\n\nfunction formatTime(seconds) {\n  const date = new Date(null);\n  date.setSeconds(seconds);\n  const ms = Math.floor((seconds % 1) * 1000);\n  return date.toISOString().substr(11, 8) + ',' + ms.toString().padStart(3, '0');\n}\n\nconst words = transcription.words.filter(w => w.type === 'word');\nif (!words.length) throw new Error(\"No words in transcription\");\n\nlet srt = '';\nlet counter = 1;\nconst maxWordsPerBlock = 5;\n\nfor (let i = 0; i < words.length; i += maxWordsPerBlock) {\n  const blockWords = words.slice(i, i + maxWordsPerBlock);\n  const start = formatTime(blockWords[0].start);\n  const end = formatTime(blockWords[blockWords.length - 1].end);\n  srt += `${counter}\\n${start} --> ${end}\\n${blockWords.map(w => w.text).join(' ')}\\n\\n`;\n  counter++;\n}\n\nreturn [\n  {\n    binary: {\n      data: {\n        data: Buffer.from(srt),\n        mimeType: 'application/x-subrip',\n        fileName: 'Chinese.srt'\n      }\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3888,
+        -320
+      ],
+      "id": "a1eeb806-aa44-4b4d-a57a-582846526cfd",
+      "name": "Code11"
+    },
+    {
+      "parameters": {
+        "jsCode": "const transcription = $json; // Polish transcription\n\nfunction formatTime(seconds) {\n  const date = new Date(null);\n  date.setSeconds(seconds);\n  const ms = Math.floor((seconds % 1) * 1000);\n  return date.toISOString().substr(11, 8) + ',' + ms.toString().padStart(3, '0');\n}\n\nconst words = transcription.words.filter(w => w.type === 'word');\nif (!words.length) throw new Error(\"No words in transcription\");\n\nlet srt = '';\nlet counter = 1;\nconst maxWordsPerBlock = 5;\n\nfor (let i = 0; i < words.length; i += maxWordsPerBlock) {\n  const blockWords = words.slice(i, i + maxWordsPerBlock);\n  const start = formatTime(blockWords[0].start);\n  const end = formatTime(blockWords[blockWords.length - 1].end);\n  srt += `${counter}\\n${start} --> ${end}\\n${blockWords.map(w => w.text).join(' ')}\\n\\n`;\n  counter++;\n}\n\nreturn [\n  {\n    binary: {\n      data: {\n        data: Buffer.from(srt),\n        mimeType: 'application/x-subrip',\n        fileName: 'Polish.srt'\n      }\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3872,
+        -528
+      ],
+      "id": "767eb634-1409-4bea-b02b-c05d929ef998",
+      "name": "Code12"
+    },
+    {
+      "parameters": {
+        "resource": "folder",
+        "name": "={{ $('Telegram Trigger').item.json.callback_query.message.message_id }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "16bXhc1Jf9HgE1W1IvxtqARGxxWk5u2mX",
+          "mode": "list",
+          "cachedResultName": "Subtitles",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/16bXhc1Jf9HgE1W1IvxtqARGxxWk5u2mX"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1792,
+        -736
+      ],
+      "id": "5f0112ca-8f10-411f-8914-5207fcf509ec",
+      "name": "Google Drive8",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "0pB0M8kcz3zGIDQC",
+          "name": "przebudzonezdrowie"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "folder",
+        "name": "={{ $('Telegram Trigger').item.json.callback_query.message.message_id }}",
+        "driveId": {
+          "__rl": true,
+          "value": "My Drive",
+          "mode": "list",
+          "cachedResultName": "My Drive",
+          "cachedResultUrl": "https://drive.google.com/drive/my-drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "15f5cMEFS0G3PcFy0S8E-h3eW064Bmi0A",
+          "mode": "list",
+          "cachedResultName": "Audio",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/15f5cMEFS0G3PcFy0S8E-h3eW064Bmi0A"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1520,
+        -688
+      ],
+      "id": "d4e66687-355e-4494-af2a-b71d25d30d35",
+      "name": "Create Audio Folder",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "0pB0M8kcz3zGIDQC",
+          "name": "przebudzonezdrowie"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "Polish.srt",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "={{ $('Google Drive8').item.json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        4288,
+        -528
+      ],
+      "id": "a5754395-1d39-4ddb-8513-4be26ce33120",
+      "name": "Saved Polish SRT",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "0pB0M8kcz3zGIDQC",
+          "name": "przebudzonezdrowie"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "Chines.srt",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "={{ $('Google Drive8').item.json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        4304,
+        -320
+      ],
+      "id": "26275c62-aed7-46b0-8e26-78fd96246437",
+      "name": "Saved Chines SRT",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "0pB0M8kcz3zGIDQC",
+          "name": "przebudzonezdrowie"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "English.srt",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "={{ $('Google Drive8').item.json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        4304,
+        -96
+      ],
+      "id": "f2bfa324-e75c-4a36-a79d-2d638c227284",
+      "name": "Saved English SRT",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "0pB0M8kcz3zGIDQC",
+          "name": "przebudzonezdrowie"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        4992,
+        -656
+      ],
+      "id": "bd015add-cebe-4fbe-9e68-fb39c56a589d",
+      "name": "Merge7"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Fetch outputs from previous nodes\n\nconst message_id = $('Create Audio Folder').first().json.name;\n\nconst english_subtitles = $('Saved English SRT').first().json.webContentLink;\n\n\n\n// Return data to be appended in Google Sheets\nreturn [\n  {\n    json: {\n      \"MessageId\":message_id,\n      \"English-subtitles\": english_subtitles\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4896,
+        -416
+      ],
+      "id": "9afec378-bd64-4d99-9e31-77cbf8047453",
+      "name": "Code13"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Fetch outputs from previous nodes\nconst audioData = $('Code3').all(); // Contains Polish, Chinese, English audio & content\nconst subtitleData = $('Code13').all(); // Contains Polish, Chinese, English subtitles\n\n// Prepare a map to join audio data with subtitles using MessageId\nconst subtitlesMap = {};\nfor (const item of subtitleData) {\n    const json = item.json;\n    subtitlesMap[json.MessageId] = {  \n        \"English-subtitles\": json[\"English-subtitles\"]\n    };\n}\n\n// Combine audio data and subtitles into a single array\nconst combinedRows = audioData.map(item => {\n    const json = item.json;\n    const messageId = json.MessageId;\n    const subs = subtitlesMap[messageId] || {};\n\n    return {\n        json: {\n            \"MessageId\": messageId,\n            \"English-Content\": json[\"English-Content\"],\n            \"English-audio-preview\": json[\"English-audio-preview\"],\n            \"English-audio-download\": json[\"English-audio-download\"],\n            \"English-Subtitles\": subs[\"English-subtitles\"],\n        }\n    };\n});\n\nreturn combinedRows;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        5232,
+        -656
+      ],
+      "id": "6972c630-8ec5-4f52-b68e-78239d6bcebe",
+      "name": "Code14"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.elevenlabs.io/v1/text-to-speech/AcHaSJVFo2IreBgTnc4Q/stream",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "xi-api-key",
+              "value": "=sk_8334a0a79b0f3a3306007cfbd46f6656adfd5c8b5f171a15"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"text\": \"={{ $json.output }}\",\n  \"model_id\": \"eleven_multilingual_v2\",\n  \"voice_settings\": {\n    \"stability\": 0.35,\n    \"similarity_boost\": 0.85,\n    \"style\": 0.7,\n    \"use_speaker_boost\": true,\n    \"speed\": 1.05\n  },\n  \"optimize_streaming_latency\": 0,\n  \"output_format\": \"mp3_44100_128\"\n}\n",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "id": "c66c1da4-1469-4c9b-9d42-0ce817cb3de1",
+      "name": "Generate Audio (English)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3232,
+        -560
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "speech",
+        "operation": "speechToText",
+        "additionalOptions": {
+          "languageCode": "pl"
+        },
+        "requestOptions": {}
+      },
+      "type": "@elevenlabs/n8n-nodes-elevenlabs.elevenLabs",
+      "typeVersion": 1,
+      "position": [
+        3696,
+        -528
+      ],
+      "id": "31a707a6-a582-4409-a7be-320ec9022b2d",
+      "name": "ElevenLabs",
+      "credentials": {
+        "elevenLabsApi": {
+          "id": "2z5dhO6nJHpn8VbP",
+          "name": "ElevenLabs account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "speech",
+        "operation": "speechToText",
+        "additionalOptions": {
+          "languageCode": "zh"
+        },
+        "requestOptions": {}
+      },
+      "type": "@elevenlabs/n8n-nodes-elevenlabs.elevenLabs",
+      "typeVersion": 1,
+      "position": [
+        3696,
+        -320
+      ],
+      "id": "a54f2d07-ea69-45d5-83fa-e7b0dac1abd0",
+      "name": "ElevenLabs1",
+      "credentials": {
+        "elevenLabsApi": {
+          "id": "2z5dhO6nJHpn8VbP",
+          "name": "ElevenLabs account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "speech",
+        "operation": "speechToText",
+        "additionalOptions": {
+          "languageCode": "en"
+        },
+        "requestOptions": {}
+      },
+      "type": "@elevenlabs/n8n-nodes-elevenlabs.elevenLabs",
+      "typeVersion": 1,
+      "position": [
+        3696,
+        -96
+      ],
+      "id": "abd74054-e754-4333-8526-a286ed098f55",
+      "name": "ElevenLabs2",
+      "credentials": {
+        "elevenLabsApi": {
+          "id": "2z5dhO6nJHpn8VbP",
+          "name": "ElevenLabs account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        7696,
+        -864
+      ],
+      "id": "2a6e326b-5dd2-4252-bffe-1f845d4523bf",
+      "name": "Merge8"
+    },
+    {
+      "parameters": {
+        "operation": "sendVideo",
+        "chatId": "={{ $('Get audio and subtitles path').first().json.ChatId }}",
+        "binaryData": true,
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        8992,
+        192
+      ],
+      "id": "8e40524f-58a6-4db9-8b2b-3dc045c6d78c",
+      "name": "Telegram4",
+      "webhookId": "86f93f1d-7583-452e-9f64-a23e88abff94",
+      "credentials": {
+        "telegramApi": {
+          "id": "QG2tqak04RzYOecM",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "sendVideo",
+        "chatId": "={{ $('Get audio and subtitles path').first().json.ChatId }}",
+        "binaryData": true,
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        9008,
+        -400
+      ],
+      "id": "96c9c6ec-ca66-4db7-83a0-e01ccc46da9a",
+      "name": "Telegram5",
+      "webhookId": "86f93f1d-7583-452e-9f64-a23e88abff94",
+      "credentials": {
+        "telegramApi": {
+          "id": "QG2tqak04RzYOecM",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "sendVideo",
+        "chatId": "={{ $('Get audio and subtitles path').first().json.ChatId }}",
+        "binaryData": true,
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        9120,
+        -864
+      ],
+      "id": "8f700396-f6d6-411e-b904-fbdff8989c36",
+      "name": "Telegram6",
+      "webhookId": "86f93f1d-7583-452e-9f64-a23e88abff94",
+      "credentials": {
+        "telegramApi": {
+          "id": "QG2tqak04RzYOecM",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        9568,
+        -880
+      ],
+      "id": "19d3a471-a678-4a23-9e9a-c3bf5f841aa9",
+      "name": "Merge17"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        9568,
+        -416
+      ],
+      "id": "741db7d5-dd4a-464d-bc58-70da8de4816a",
+      "name": "Merge18"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        9440,
+        112
+      ],
+      "id": "32d084bf-078c-4c87-b8b6-ee1ef3d893b0",
+      "name": "Merge19"
+    },
+    {
+      "parameters": {
+        "numberInputs": 3
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        10016,
+        -608
+      ],
+      "id": "7045837a-d1b0-4791-93da-4b2c1b7f8c51",
+      "name": "Merge20"
+    },
+    {
+      "parameters": {
+        "resource": "folder",
+        "name": "={{ $('Google Sheets1').item.json.MessageId }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1OyAy8lJtzJ6eG_aU8BVhu-K-IghCypCN",
+          "mode": "list",
+          "cachedResultName": "ReadyVideos",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1OyAy8lJtzJ6eG_aU8BVhu-K-IghCypCN"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        6096,
+        -720
+      ],
+      "id": "eb2c506c-e392-4e8a-9978-0c5231fe37d1",
+      "name": "Create Folder in drive",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "0pB0M8kcz3zGIDQC",
+          "name": "przebudzonezdrowie"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1ygP78jhkxv7p18dKCjtvuH8Z__Dw6outclH7OvfCuw8",
+          "mode": "list",
+          "cachedResultName": "AWAKEN - GixiAI",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ygP78jhkxv7p18dKCjtvuH8Z__Dw6outclH7OvfCuw8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1754972574,
+          "mode": "list",
+          "cachedResultName": "audio-files",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ygP78jhkxv7p18dKCjtvuH8Z__Dw6outclH7OvfCuw8/edit#gid=1754972574"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "MessageId",
+              "lookupValue": "={{ $('Google Sheets1').item.json.MessageId }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        6304,
+        -720
+      ],
+      "id": "9fc781d2-216e-42ee-851b-753608dffe51",
+      "name": "Get audio and subtitles path",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "7qtlUMiyrLX33NYW",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://www.googleapis.com/drive/v3/files",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleDriveOAuth2Api",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "q",
+              "value": "'1LjGyXNV5ho-E2v-YQX7BKKyRzSjllwz3' in parents and mimeType contains 'video' and trashed=false"
+            },
+            {
+              "name": "feilds",
+              "value": "files(id,name,mimeType,webViewLink,webContentLink)"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "6170e3b0-6de1-4d8b-9e8b-8b6b66be2619",
+      "name": "Get all video files",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        6848,
+        -880
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "0pB0M8kcz3zGIDQC",
+          "name": "przebudzonezdrowie"
+        },
+        "googleDocsOAuth2Api": {
+          "id": "Zy5Qw5ZASaWUis89",
+          "name": "Google Docs account"
+        },
+        "googleDriveOAuth2Api": {
+          "id": "0pB0M8kcz3zGIDQC",
+          "name": "przebudzonezdrowie"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get the array of files from previous node output\nconst files = $input.first().json.files;\n\n// Ensure files exist\nif (!files || files.length === 0) {\n  throw new Error(\"No video files found in the Google Drive folder.\");\n}\n\n// Pick a random file\nconst randomFile = files[Math.floor(Math.random() * files.length)];\n\n// Construct a direct download link for that video\nconst downloadLink = `https://drive.google.com/uc?id=${randomFile.id}&export=download`;\n\n// Return the selected file info\nreturn [\n  {\n    json: {\n      id: randomFile.id,\n      name: randomFile.name,\n      mimeType: randomFile.mimeType,\n      downloadLink,\n      viewLink: `https://drive.google.com/file/d/${randomFile.id}/view`\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        7104,
+        -880
+      ],
+      "id": "4bf74609-449b-417d-b6b6-7e27db08173a",
+      "name": "select randome video"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.downloadLink }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        7296,
+        -880
+      ],
+      "id": "59443b7c-3ca4-4323-ab21-c59c6a309aa9",
+      "name": "download video"
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "/home/node/n8n-uploads/Video.mp4",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        7504,
+        -880
+      ],
+      "id": "2a555c09-9f59-4854-895e-57c9454dba65",
+      "name": "uplod video"
+    },
+    {
+      "parameters": {
+        "command": "ffmpeg -y -loglevel error -stream_loop -1 \\\n-i /home/node/n8n-uploads/Video.mp4 \\\n-i /home/node/n8n-uploads/Polish.mp3 \\\n-filter_complex \"[0:v]setpts=PTS-STARTPTS[v];[v]subtitles='/home/node/n8n-uploads/Polish.srt':force_style='FontName=Poppins,FontSize=9,PrimaryColour=&H0000FFFF,BackColour=&H000000FF,Outline=1,Shadow=0,BorderStyle=3,MarginV=30'[vout]\" \\\n-map \"[vout]\" -map 1:a \\\n-c:v libx264 -preset slow -crf 30 \\\n-maxrate 900k -bufsize 1800k \\\n-c:a aac -b:a 96k \\\n-shortest \\\n/home/node/n8n-uploads/Polish-working.mp4"
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        7920,
+        -976
+      ],
+      "id": "dcbe9b21-4188-4395-8e5a-4aa39c28ca90",
+      "name": "Process polish video"
+    },
+    {
+      "parameters": {
+        "command": "ffmpeg -y -loglevel error -stream_loop -1 \\\n-i /home/node/n8n-uploads/Video.mp4 \\\n-i /home/node/n8n-uploads/Chines.mp3 \\\n-filter_complex \"[0:v]setpts=PTS-STARTPTS[v];[v]subtitles='/home/node/n8n-uploads/Chines.srt':force_style='FontName=Noto Sans CJK SC,FontSize=9,PrimaryColour=&H0000FFFF,BackColour=&H000000FF,Outline=1,Shadow=0,BorderStyle=3,MarginV=30'[vout]\" \\\n-map \"[vout]\" -map 1:a \\\n-c:v libx264 -crf 28 -preset slower \\\n-c:a aac -b:a 128k -shortest \\\n/home/node/n8n-uploads/Chines-working.mp4\n"
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        7904,
+        -704
+      ],
+      "id": "f09aff67-30f7-465a-a632-741d06bc9fbe",
+      "name": "process chines video"
+    },
+    {
+      "parameters": {
+        "command": "ffmpeg -y -loglevel error -stream_loop -1 \\\n-i /home/node/n8n-uploads/Video.mp4 \\\n-i /home/node/n8n-uploads/English.mp3 \\\n-filter_complex \"[0:v]setpts=PTS-STARTPTS[v];[v]subtitles='/home/node/n8n-uploads/English.srt':force_style='FontName=Poppins,FontSize=11,PrimaryColour=&H0000FFFF,BackColour=&H000000FF,Outline=1,Shadow=0,BorderStyle=3,MarginV=30'[vout]\" \\\n-map \"[vout]\" -map 1:a \\\n-c:v libx264 -b:v 1600k -maxrate 1800k -bufsize 3600k \\\n-c:a aac -b:a 128k -preset slower -shortest \\\n/home/node/n8n-uploads/English-working.mp4\n"
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        7872,
+        -480
+      ],
+      "id": "349f122b-e371-4623-83fe-3d6c046025e8",
+      "name": "process english video"
+    },
+    {
+      "parameters": {
+        "fileSelector": "/home/node/n8n-uploads/Chines-output.mp4",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        8752,
+        -448
+      ],
+      "id": "9f4caa45-955b-4a00-ab19-1641c083c36f",
+      "name": "download chines video"
+    },
+    {
+      "parameters": {
+        "fileSelector": "/home/node/n8n-uploads/English-output.mp4",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        8784,
+        48
+      ],
+      "id": "53760959-1a15-4af8-9ffb-c9bec88a8409",
+      "name": "download english video"
+    },
+    {
+      "parameters": {
+        "name": "Polish.mp4",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "={{ $('Create Folder in drive').first().json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        9168,
+        -1184
+      ],
+      "id": "850af8a6-38c8-415b-bdcf-a11b72adc460",
+      "name": "upload polish drive",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "0pB0M8kcz3zGIDQC",
+          "name": "przebudzonezdrowie"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "Chines.mp4",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "={{ $('Create Folder in drive').first().json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        9264,
+        -496
+      ],
+      "id": "76cb1f7e-f88a-4f5a-8165-674e951d1e0b",
+      "name": "upload chines video",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "0pB0M8kcz3zGIDQC",
+          "name": "przebudzonezdrowie"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "English.mp4",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "={{ $('Create Folder in drive').first().json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        9168,
+        16
+      ],
+      "id": "a140d34f-e256-4bd6-b83d-a3abd27a2d7a",
+      "name": "upload english video",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "0pB0M8kcz3zGIDQC",
+          "name": "przebudzonezdrowie"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1ygP78jhkxv7p18dKCjtvuH8Z__Dw6outclH7OvfCuw8",
+          "mode": "list",
+          "cachedResultName": "AWAKEN - GixiAI",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ygP78jhkxv7p18dKCjtvuH8Z__Dw6outclH7OvfCuw8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1926730048,
+          "mode": "list",
+          "cachedResultName": "Video -content",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ygP78jhkxv7p18dKCjtvuH8Z__Dw6outclH7OvfCuw8/edit#gid=1926730048"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Polish": "=",
+            "English": "={{ \n  $if($(\"upload english video\").isExecuted, $(\"upload english video\").first().json.webContentLink, \n    $if($(\"upload english video1\").isExecuted, $(\"upload english video1\").first().json.webContentLink, \"\")\n  ) \n}}\n",
+            "Chines": "=",
+            "MessageId": "={{ $('Get audio and subtitles path').first().json.MessageId }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "MessageId",
+              "displayName": "MessageId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Polish",
+              "displayName": "Polish",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "English",
+              "displayName": "English",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Chines",
+              "displayName": "Chines",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        10384,
+        -608
+      ],
+      "id": "02545d25-bd99-438d-80e3-24061d0e1b91",
+      "name": "upload video drive links",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "7qtlUMiyrLX33NYW",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get AI output text from Telegram Trigger\nlet aiOutput = $input.first().json.output\n\n// Basic validation\nif (!aiOutput || aiOutput.trim() === '') {\n  throw new Error('Brak tekstu do oczyszczenia.');\n}\n\n// Remove the footer line if present\naiOutput = aiOutput.replace(/This message was sent automatically with n8n\\s*/gi, '');\n\n// Optional: trim extra spaces or line breaks\naiOutput = aiOutput.trim();\n\n// Return cleaned text for next node\nreturn [\n  {\n    json: {\n      cleanedText: aiOutput\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -384,
+        -864
+      ],
+      "id": "033b22b0-202e-4dd8-a957-0611fdaec444",
+      "name": "Code4"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.elevenlabs.io/v1/text-to-speech/9KxYk8R0HUl6iFqEPplU/stream",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "xi-api-key",
+              "value": "sk_8334a0a79b0f3a3306007cfbd46f6656adfd5c8b5f171a15"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"text\": \"{{ $json.text }}\",\n  \"model_id\": \"eleven_multilingual_v2\",\n  \"language\": \"pl\",\n  \"voice_settings\": {\n    \"speed\": 0.8,\n    \"stability\": 1.0,\n    \"similarity_boost\": 1.0,\n    \"style\": 0.5,\n    \"use_speaker_boost\": true\n  }\n}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "id": "b3d27d7a-d6fc-4931-ba1e-a26ec7ff80b6",
+      "name": "Generate Audio (Polish)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3264,
+        -1104
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "editMessageText",
+        "chatId": "={{ $('Code').item.json.chatId }}",
+        "messageId": "={{ $('Telegram Trigger').item.json.callback_query.message.message_id }}",
+        "text": "={{ $('Telegram Trigger').first().json.callback_query.message.text }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1216,
+        -624
+      ],
+      "id": "dec19f3b-50d7-4c12-8e25-140767cbc66e",
+      "name": "Edit a text message",
+      "webhookId": "9df0afec-3b42-4187-8b07-55533e4fbd1a",
+      "credentials": {
+        "telegramApi": {
+          "id": "QG2tqak04RzYOecM",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "/home/node/n8n-uploads/Polish.srt",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        4080,
+        -528
+      ],
+      "id": "37855371-0df9-4343-81d9-683efd728adb",
+      "name": "upload polish subtitles2"
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "/home/node/n8n-uploads/Chines.srt",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        4080,
+        -320
+      ],
+      "id": "18ae72d2-35fe-4f1e-92d8-10b810376aab",
+      "name": "upload chines subtitles"
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "/home/node/n8n-uploads/English.srt",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        4096,
+        -96
+      ],
+      "id": "d392d436-8b9b-43bf-b21b-130a3f4c6453",
+      "name": "upload english subtitles"
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "/home/node/n8n-uploads/Polish.mp3",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        3584,
+        -1184
+      ],
+      "id": "5affd18c-7f21-4e33-b806-1b6f12ed3b5f",
+      "name": "upload polish subtitles1"
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "/home/node/n8n-uploads/Chines.mp3",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        3600,
+        -960
+      ],
+      "id": "3d2945ee-4f10-4a27-bbe1-069d8d27d4cc",
+      "name": "upload chines audio"
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "/home/node/n8n-uploads/English.mp3",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        3648,
+        -736
+      ],
+      "id": "565ce941-7ae4-4048-a17f-21641ce32e2d",
+      "name": "upload english audio"
+    },
+    {
+      "parameters": {
+        "command": "stat -c%s /home/node/n8n-uploads/Polish-output.mp4\n"
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        8272,
+        -864
+      ],
+      "id": "259615e3-15ef-43eb-90fb-6614b385c80a",
+      "name": "Process polish video1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "07524849-457e-45f1-9c0b-1788f2bd4f4c",
+              "leftValue": "={{ $json.stdout.toNumber() }}",
+              "rightValue": 51379224,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        8560,
+        -912
+      ],
+      "id": "95bcdd3d-caf0-4bc9-b0ce-38d96c79685c",
+      "name": "If2"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Get audio and subtitles path').first().json.ChatId }}",
+        "text": "=The generated video is too large to be sent via Telegram.   You can download it from the link below \n\n{{ $json[\"downloadLink\"] }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        9424,
+        -1168
+      ],
+      "id": "8022044a-74cf-44c5-b817-f2a21d185618",
+      "name": "Telegram7",
+      "webhookId": "86f93f1d-7583-452e-9f64-a23e88abff94",
+      "credentials": {
+        "telegramApi": {
+          "id": "QG2tqak04RzYOecM",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fileSelector": "/home/node/n8n-uploads/Polish-output.mp4",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        8912,
+        -1184
+      ],
+      "id": "b28d388b-1844-43ce-af58-3d1c82c0e5bf",
+      "name": "download polish video"
+    },
+    {
+      "parameters": {
+        "name": "Polish.mp4",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "={{ $('Create Folder in drive').first().json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        9328,
+        -1008
+      ],
+      "id": "30598c72-b5c1-41b6-b5dc-1d53ee6ffda5",
+      "name": "upload polish drive1",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "0pB0M8kcz3zGIDQC",
+          "name": "przebudzonezdrowie"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fileSelector": "/home/node/n8n-uploads/Polish-output.mp4",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        8832,
+        -912
+      ],
+      "id": "8462e1dd-236c-44b0-8285-5f80a11b8dbe",
+      "name": "download polish video1"
+    },
+    {
+      "parameters": {
+        "command": "stat -c%s /home/node/n8n-uploads/Polish-output.mp4\n"
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        8368,
+        -352
+      ],
+      "id": "63607f8c-46c0-4f23-9405-92c9e18456db",
+      "name": "Process polish video2"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "07524849-457e-45f1-9c0b-1788f2bd4f4c",
+              "leftValue": "={{ $json.stdout.toNumber() }}",
+              "rightValue": 51379224,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        8560,
+        -208
+      ],
+      "id": "1df305c7-8eeb-423b-be13-fb22005a8fa8",
+      "name": "If3"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Get audio and subtitles path').first().json.ChatId }}",
+        "text": "=The generated video is too large to be sent via Telegram.   You can download it from the link below \n\n{{ $json[\"downloadLink\"] }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        9488,
+        -144
+      ],
+      "id": "0f4a2a51-b383-414d-a036-097e3cc0def0",
+      "name": "Telegram8",
+      "webhookId": "86f93f1d-7583-452e-9f64-a23e88abff94",
+      "credentials": {
+        "telegramApi": {
+          "id": "QG2tqak04RzYOecM",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fileSelector": "/home/node/n8n-uploads/Polish-output.mp4",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        8896,
+        -224
+      ],
+      "id": "7939c12e-1319-4aa4-a646-07da94558edb",
+      "name": "download polish video2"
+    },
+    {
+      "parameters": {
+        "command": "stat -c%s /home/node/n8n-uploads/Polish-output.mp4\n"
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        8256,
+        -608
+      ],
+      "id": "7ccae86d-8acd-4b03-8d3b-e31fc2e5d7c9",
+      "name": "Process polish video3"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "07524849-457e-45f1-9c0b-1788f2bd4f4c",
+              "leftValue": "={{ $json.stdout.toNumber() }}",
+              "rightValue": 51379224,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        8528,
+        -608
+      ],
+      "id": "aec334b3-991e-459a-919d-02b70db7f65a",
+      "name": "If4"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Get audio and subtitles path').first().json.ChatId }}",
+        "text": "=The generated video is too large to be sent via Telegram.   You can download it from the link below \n\n{{ $json[\"downloadLink\"] }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        9456,
+        -640
+      ],
+      "id": "e373ce32-0f33-4058-a4a2-2d23ef92048f",
+      "name": "Telegram9",
+      "webhookId": "86f93f1d-7583-452e-9f64-a23e88abff94",
+      "credentials": {
+        "telegramApi": {
+          "id": "QG2tqak04RzYOecM",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fileSelector": "/home/node/n8n-uploads/Polish-output.mp4",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        8752,
+        -672
+      ],
+      "id": "a1384645-9aa9-4a0a-985b-032bfbdad389",
+      "name": "download polish video3"
+    },
+    {
+      "parameters": {
+        "name": "Polish.mp4",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "={{ $('Create Folder in drive').first().json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        9200,
+        -192
+      ],
+      "id": "8f76ba87-6509-42f4-9a09-85a886bd57e7",
+      "name": "upload english video1",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "0pB0M8kcz3zGIDQC",
+          "name": "przebudzonezdrowie"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "Polish.mp4",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "={{ $('Create Folder in drive').first().json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        9040,
+        -656
+      ],
+      "id": "4d0df96c-8cb8-40bf-9453-411219b1c218",
+      "name": "upload chines video1",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "0pB0M8kcz3zGIDQC",
+          "name": "przebudzonezdrowie"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://www.googleapis.com/drive/v3/files",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleDriveOAuth2Api",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "q",
+              "value": "'1PzSp_0zGPhNd36D738QGEtDXzfNYxgoB' in parents and mimeType contains 'audio' and trashed=false"
+            },
+            {
+              "name": "fields",
+              "value": "files(id,name,mimeType,webViewLink,webContentLink)"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "df11df26-5a8e-4fbe-87a1-841bc7a1f164",
+      "name": "Get all music files1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        6816,
+        -672
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "0pB0M8kcz3zGIDQC",
+          "name": "przebudzonezdrowie"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "/home/node/n8n-uploads/music.mp3",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        7504,
+        -672
+      ],
+      "id": "6a4d0030-c91c-4a89-9037-3baec76df2c2",
+      "name": "uplod music"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get the array of files from previous node output\nconst files = $input.first().json.files;\n\n// Ensure files exist\nif (!files || files.length === 0) {\n  throw new Error(\"No audio files found in the Google Drive folder.\");\n}\n\n// Pick a random file\nconst randomFile = files[Math.floor(Math.random() * files.length)];\n\n// Construct a direct download link for that audio file\nconst downloadLink = `https://drive.google.com/uc?id=${randomFile.id}&export=download`;\n\n// Return the selected file info\nreturn [\n  {\n    json: {\n      id: randomFile.id,\n      name: randomFile.name,\n      mimeType: randomFile.mimeType,\n      downloadLink,\n      viewLink: `https://drive.google.com/file/d/${randomFile.id}/view`\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        7072,
+        -672
+      ],
+      "id": "d7c55564-978d-445f-bf1a-df8a38c0e02a",
+      "name": "Select random music"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.downloadLink }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        7296,
+        -672
+      ],
+      "id": "cd61e803-53e2-49d0-8c82-ecb08a2940a1",
+      "name": "download music"
+    },
+    {
+      "parameters": {
+        "command": "ffmpeg -y -loglevel error \\\n-i /home/node/n8n-uploads/English-working.mp4 \\\n-i /home/node/n8n-uploads/music.mp3 \\\n-filter_complex \"\\\n[1:a]volume=0.1,aloop=loop=-1:size=2e+09[bg]; \\\n[0:a][bg]amix=inputs=2:duration=first:dropout_transition=3[aout]\" \\\n-map 0:v -map \"[aout]\" \\\n-c:v copy -c:a aac -b:a 128k -shortest \\\n/home/node/n8n-uploads/English-output.mp4\n"
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        8096,
+        -432
+      ],
+      "id": "82c4fba2-fc8f-409e-af8e-d377c82c711a",
+      "name": "Process English Music"
+    },
+    {
+      "parameters": {
+        "command": "ffmpeg -y -loglevel error \\\n-i /home/node/n8n-uploads/Polish-working.mp4 \\\n-i /home/node/n8n-uploads/music.mp3 \\\n-filter_complex \"\\\n[1:a]volume=0.05,aloop=loop=-1:size=2e+09[bg]; \\\n[0:a][bg]amix=inputs=2:duration=first:dropout_transition=3[aout]\" \\\n-map 0:v -map \"[aout]\" \\\n-c:v copy -c:a aac -b:a 128k -shortest \\\n/home/node/n8n-uploads/Polish-output.mp4\n"
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        8080,
+        -656
+      ],
+      "id": "7169a2ea-a3ce-4a4d-924d-3663d548bf7a",
+      "name": "Process Chines music"
+    },
+    {
+      "parameters": {
+        "command": "ffmpeg -y -loglevel error \\\n-i /home/node/n8n-uploads/Polish-working.mp4 \\\n-i /home/node/n8n-uploads/music.mp3 \\\n-filter_complex \"\\\n[1:a]volume=0.05,aloop=loop=-1:size=2e+09[bg]; \\\n[0:a][bg]amix=inputs=2:duration=first:dropout_transition=3[aout]\" \\\n-map 0:v -map \"[aout]\" \\\n-c:v copy -c:a aac -b:a 128k -shortest \\\n/home/node/n8n-uploads/Polish-output.mp4\n"
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        8080,
+        -896
+      ],
+      "id": "1c346bed-8b86-42c9-bb55-c6ae0565771c",
+      "name": "Process polish music"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1ygP78jhkxv7p18dKCjtvuH8Z__Dw6outclH7OvfCuw8",
+          "mode": "list",
+          "cachedResultName": "AWAKEN - GixiAI",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ygP78jhkxv7p18dKCjtvuH8Z__Dw6outclH7OvfCuw8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1754972574,
+          "mode": "list",
+          "cachedResultName": "audio-files",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ygP78jhkxv7p18dKCjtvuH8Z__Dw6outclH7OvfCuw8/edit#gid=1754972574"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Polish-audio-preview": "={{ $json['Polish-audio-preview'] }}",
+            "Polish-audio-download": "={{ $json['Polish-audio-download'] }}",
+            "Polish-Content": "={{ $json['Polish-Content'] }}",
+            "Chines-Content": "={{ $json['Chines-Content'] }}",
+            "Chines-audio-preview": "={{ $json['Chines-audio-preview'] }}",
+            "Chines-audio-download": "={{ $json['Chines-audio-download'] }}",
+            "English-Content": "={{ $json['English-Content'] }}",
+            "English-audio-preview": "={{ $json['English-audio-preview'] }}",
+            "English-audio-download": "={{ $json['English-audio-download'] }}",
+            "MessageId": "={{ $json.MessageId }}",
+            "Polish-Subtitles": "={{ $json['Polish-Subtitles'] }}",
+            "Chines-Subtitles": "={{ $json['Chines-Subtitles'] }}",
+            "English-Subtitles": "={{ $json['English-Subtitles'] }}",
+            "ChatId": "={{ $('Code').first().json.chatId }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "ChatId",
+              "displayName": "ChatId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "MessageId",
+              "displayName": "MessageId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Polish-Content",
+              "displayName": "Polish-Content",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Polish-audio-preview",
+              "displayName": "Polish-audio-preview",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Polish-audio-download",
+              "displayName": "Polish-audio-download",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Polish-Subtitles",
+              "displayName": "Polish-Subtitles",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Chines-Content",
+              "displayName": "Chines-Content",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Chines-audio-preview",
+              "displayName": "Chines-audio-preview",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Chines-audio-download",
+              "displayName": "Chines-audio-download",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Chines-Subtitles",
+              "displayName": "Chines-Subtitles",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "English-Content",
+              "displayName": "English-Content",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "English-audio-preview",
+              "displayName": "English-audio-preview",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "English-audio-download",
+              "displayName": "English-audio-download",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "English-Subtitles",
+              "displayName": "English-Subtitles",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        5584,
+        -480
+      ],
+      "id": "087ef80b-fbc7-4392-8aa8-7358f7e97248",
+      "name": "Google Sheets2",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "7qtlUMiyrLX33NYW",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1ygP78jhkxv7p18dKCjtvuH8Z__Dw6outclH7OvfCuw8",
+          "mode": "list",
+          "cachedResultName": "AWAKEN - GixiAI",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ygP78jhkxv7p18dKCjtvuH8Z__Dw6outclH7OvfCuw8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1926730048,
+          "mode": "list",
+          "cachedResultName": "Video -content",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ygP78jhkxv7p18dKCjtvuH8Z__Dw6outclH7OvfCuw8/edit#gid=1926730048"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Polish": "={{ \n  $if($(\"upload polish drive\").isExecuted, $(\"upload polish drive\").first().json.webContentLink, \n    $if($(\"upload polish drive1\").isExecuted, $(\"upload polish drive1\").first().json.webContentLink, \"\")\n  ) \n}}\n",
+            "English": "={{ \n  $if($(\"upload english video\").isExecuted, $(\"upload english video\").first().json.webContentLink, \n    $if($(\"upload english video1\").isExecuted, $(\"upload english video1\").first().json.webContentLink, \"\")\n  ) \n}}\n",
+            "Chines": "={{ \n  $if($(\"upload chines video\").isExecuted, $(\"upload chines video\").first().json.webContentLink, \n    $if($(\"upload chines video1\").isExecuted, $(\"upload chines video1\").first().json.webContentLink, \"\")\n  ) \n}}\n",
+            "MessageId": "={{ $('Get audio and subtitles path').first().json.MessageId }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "MessageId",
+              "displayName": "MessageId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Polish",
+              "displayName": "Polish",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "English",
+              "displayName": "English",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Chines",
+              "displayName": "Chines",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        10416,
+        -320
+      ],
+      "id": "cb19d30a-db1c-4ed0-99dd-03fe1504cd93",
+      "name": "upload video drive links1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "7qtlUMiyrLX33NYW",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Fetch outputs from previous nodes\nconst message_id = $('Create Audio Folder').first().json.name;\n\nconst chines_content = $('Generate Audio (Chines)').first().json.output;\nconst chines_audio_preview = $('Google Drive3').first().json.webViewLink;\nconst chines_audio_download = $('Google Drive3').first().json.webContentLink;\n\nconst english_content = $('Generate Audio (English)').first().json.output;\nconst english_audio_preview = $('Google Drive4').first().json.webViewLink;\nconst english_audio_download = $('Google Drive4').first().json.webContentLink;\n\nconst polish_content = $('Generate Audio (Polish)').first().json.text;\nconst polish_audio_preview = $('Google Drive2').first().json.webViewLink;\nconst polish_audio_download = $('Google Drive2').first().json.webContentLink;\n\n// Return data to be appended in Google Sheets\nreturn [\n  {\n    json: {\n      \"MessageId\": message_id,\n      \"Polish-Content\": polish_content,\n      \"Polish-audio-preview\": polish_audio_preview,\n      \"Polish-audio-download\": polish_audio_download,\n      \"Chines-Content\": chines_content,\n      \"Chines-audio-preview\": chines_audio_preview,\n      \"Chines-audio-download\": chines_audio_download,\n      \"English-Content\": english_content,\n      \"English-audio-preview\": english_audio_preview,\n      \"English-audio-download\": english_audio_download\n    }\n  }\n]"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4704,
+        -1088
+      ],
+      "id": "f415b44c-5095-47ea-86eb-8c0cf1ae30ad",
+      "name": "Code5"
+    }
+  ],
+  "connections": {
+    "Telegram": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Code4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "Generate Audio (English)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Edit a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent2": {
+      "main": [
+        [
+          {
+            "node": "Generate Audio (Chines)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code2": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Audio (Chines)": {
+      "main": [
+        [
+          {
+            "node": "ElevenLabs1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "upload chines audio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Drive2": {
+      "main": [
+        []
+      ]
+    },
+    "Google Drive3": {
+      "main": [
+        []
+      ]
+    },
+    "Google Drive4": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Google Sheets1": {
+      "main": [
+        [
+          {
+            "node": "Create Folder in drive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge2": {
+      "main": [
+        [
+          {
+            "node": "Code3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code3": {
+      "main": [
+        [
+          {
+            "node": "Merge7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code7": {
+      "main": [
+        [
+          {
+            "node": "upload english subtitles",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge6": {
+      "main": [
+        [
+          {
+            "node": "Code13",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code11": {
+      "main": [
+        [
+          {
+            "node": "upload chines subtitles",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code12": {
+      "main": [
+        [
+          {
+            "node": "upload polish subtitles2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Drive8": {
+      "main": [
+        [
+          {
+            "node": "Code2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Audio Folder": {
+      "main": [
+        [
+          {
+            "node": "Google Drive8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Saved Polish SRT": {
+      "main": [
+        []
+      ]
+    },
+    "Saved Chines SRT": {
+      "main": [
+        []
+      ]
+    },
+    "Saved English SRT": {
+      "main": [
+        [
+          {
+            "node": "Merge6",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Merge7": {
+      "main": [
+        [
+          {
+            "node": "Code14",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code13": {
+      "main": [
+        [
+          {
+            "node": "Merge7",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Code14": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Audio (English)": {
+      "main": [
+        [
+          {
+            "node": "ElevenLabs2",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "upload english audio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ElevenLabs": {
+      "main": [
+        []
+      ]
+    },
+    "ElevenLabs1": {
+      "main": [
+        [
+          {
+            "node": "Code11",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ElevenLabs2": {
+      "main": [
+        [
+          {
+            "node": "Code7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge8": {
+      "main": [
+        [
+          {
+            "node": "process english video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram4": {
+      "main": [
+        [
+          {
+            "node": "Merge19",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Telegram5": {
+      "main": [
+        [
+          {
+            "node": "Merge18",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Telegram6": {
+      "main": [
+        [
+          {
+            "node": "Merge17",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge17": {
+      "main": [
+        []
+      ]
+    },
+    "Merge18": {
+      "main": [
+        []
+      ]
+    },
+    "Merge19": {
+      "main": [
+        [
+          {
+            "node": "Merge20",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Merge20": {
+      "main": [
+        [
+          {
+            "node": "upload video drive links",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Folder in drive": {
+      "main": [
+        [
+          {
+            "node": "Get audio and subtitles path",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get audio and subtitles path": {
+      "main": [
+        [
+          {
+            "node": "Get all video files",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get all music files1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get all video files": {
+      "main": [
+        [
+          {
+            "node": "select randome video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "select randome video": {
+      "main": [
+        [
+          {
+            "node": "download video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "download video": {
+      "main": [
+        [
+          {
+            "node": "uplod video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "uplod video": {
+      "main": [
+        [
+          {
+            "node": "Merge8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process polish video": {
+      "main": [
+        [
+          {
+            "node": "Process polish music",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "process chines video": {
+      "main": [
+        [
+          {
+            "node": "Process Chines music",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "process english video": {
+      "main": [
+        [
+          {
+            "node": "Process English Music",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "download chines video": {
+      "main": [
+        [
+          {
+            "node": "upload chines video",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Telegram5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "download english video": {
+      "main": [
+        [
+          {
+            "node": "upload english video",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Telegram4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "upload polish drive": {
+      "main": [
+        [
+          {
+            "node": "Telegram7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "upload chines video": {
+      "main": [
+        [
+          {
+            "node": "Merge18",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "upload english video": {
+      "main": [
+        [
+          {
+            "node": "Merge19",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code4": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Audio (Polish)": {
+      "main": [
+        [
+          {
+            "node": "ElevenLabs",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "upload polish subtitles1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit a text message": {
+      "main": [
+        [
+          {
+            "node": "Create Audio Folder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "upload polish subtitles2": {
+      "main": [
+        [
+          {
+            "node": "Saved Polish SRT",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "upload chines subtitles": {
+      "main": [
+        [
+          {
+            "node": "Saved Chines SRT",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "upload english subtitles": {
+      "main": [
+        [
+          {
+            "node": "Saved English SRT",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "upload polish subtitles1": {
+      "main": [
+        [
+          {
+            "node": "Google Drive2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "upload chines audio": {
+      "main": [
+        [
+          {
+            "node": "Google Drive3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "upload english audio": {
+      "main": [
+        [
+          {
+            "node": "Google Drive4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process polish video1": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "download polish video",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "download polish video1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram7": {
+      "main": [
+        []
+      ]
+    },
+    "download polish video": {
+      "main": [
+        [
+          {
+            "node": "upload polish drive",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "upload polish drive1": {
+      "main": [
+        [
+          {
+            "node": "Merge17",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "download polish video1": {
+      "main": [
+        [
+          {
+            "node": "upload polish drive1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Telegram6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process polish video2": {
+      "main": [
+        [
+          {
+            "node": "If3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If3": {
+      "main": [
+        [
+          {
+            "node": "download polish video2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "download english video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram8": {
+      "main": [
+        [
+          {
+            "node": "Merge20",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "download polish video2": {
+      "main": [
+        [
+          {
+            "node": "upload english video1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process polish video3": {
+      "main": [
+        [
+          {
+            "node": "If4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If4": {
+      "main": [
+        [
+          {
+            "node": "download polish video3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "download chines video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram9": {
+      "main": [
+        []
+      ]
+    },
+    "download polish video3": {
+      "main": [
+        [
+          {
+            "node": "upload chines video1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "upload english video1": {
+      "main": [
+        [
+          {
+            "node": "Telegram8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "upload chines video1": {
+      "main": [
+        [
+          {
+            "node": "Telegram9",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get all music files1": {
+      "main": [
+        [
+          {
+            "node": "Select random music",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "uplod music": {
+      "main": [
+        [
+          {
+            "node": "Merge8",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Select random music": {
+      "main": [
+        [
+          {
+            "node": "download music",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "download music": {
+      "main": [
+        [
+          {
+            "node": "uplod music",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process English Music": {
+      "main": [
+        [
+          {
+            "node": "Process polish video2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process Chines music": {
+      "main": [
+        [
+          {
+            "node": "Process polish video3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process polish music": {
+      "main": [
+        [
+          {
+            "node": "Process polish video1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "eaea15f16ebcf1afd3a6c3135229f6acb9c554e01412133d53e7711889245f20"
+  }
+}
