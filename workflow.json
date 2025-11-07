@@ -34,8 +34,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        176,
-        -848
+        1024,
+        -1040
       ],
       "id": "d9ad8635-28e3-4d0a-aff2-c6861ddc6ceb",
       "name": "Telegram",
@@ -86,8 +86,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -1104,
-        -496
+        144,
+        -656
       ],
       "id": "c997a727-3652-4bc0-8d0e-1a373c68de29",
       "name": "If1"
@@ -101,8 +101,8 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2,
       "position": [
-        -768,
-        -864
+        368,
+        -992
       ],
       "id": "48671c67-6b8a-44dc-85c2-b8bee9796086",
       "name": "AI Agent"
@@ -119,8 +119,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        -768,
-        -640
+        384,
+        -768
       ],
       "id": "a853d8e1-f49c-425d-a13a-ef00a7b42a9c",
       "name": "OpenAI Chat Model",
@@ -220,8 +220,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.6,
       "position": [
-        -64,
-        -848
+        816,
+        -928
       ],
       "id": "8a8e6fe1-2b21-46a5-a287-0bb40fb538b4",
       "name": "Google Sheets",
@@ -241,8 +241,8 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        -640,
-        -640
+        496,
+        -784
       ],
       "id": "f1352e39-3212-4a88-bb0e-ae8e5dd6ca1e",
       "name": "Simple Memory"
@@ -254,8 +254,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -1376,
-        -496
+        -64,
+        -656
       ],
       "id": "0b0cefe3-92fd-465b-a32b-b122bffea514",
       "name": "Code"
@@ -287,8 +287,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        2736,
-        -368
+        2752,
+        -384
       ],
       "id": "ff39dd42-37d8-4fee-b90f-1c792759bf04",
       "name": "OpenAI Chat Model1",
@@ -306,8 +306,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        400,
-        -816
+        1216,
+        -928
       ],
       "id": "2a58a1a5-ab20-467c-bc18-9dae89d19b1d",
       "name": "Code1"
@@ -340,8 +340,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        1008,
-        -528
+        1488,
+        -688
       ],
       "id": "4b8d9b75-187e-4e85-a458-83d71741c186",
       "name": "If"
@@ -392,8 +392,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2176,
-        -928
+        2464,
+        -816
       ],
       "id": "67e7f2e9-68b9-4fbb-bc4a-56d29b6f01c3",
       "name": "Code2"
@@ -432,7 +432,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        3280,
+        3232,
         -864
       ]
     },
@@ -712,8 +712,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.6,
       "position": [
-        5536,
-        -720
+        5504,
+        -688
       ],
       "id": "fb6a0187-53a0-4039-9a81-ee69efb3ac60",
       "name": "Google Sheets1",
@@ -735,8 +735,8 @@
       "type": "n8n-nodes-base.telegramTrigger",
       "typeVersion": 1.2,
       "position": [
-        -1664,
-        -576
+        -272,
+        -656
       ],
       "id": "d2e5dd66-7be8-441d-9332-356e3462d12e",
       "name": "Telegram Trigger",
@@ -768,8 +768,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        4560,
-        -864
+        4720,
+        -848
       ],
       "id": "a0e87a29-98fa-4307-a979-ecc0cc11753d",
       "name": "Code3"
@@ -782,7 +782,7 @@
       "typeVersion": 2,
       "position": [
         3888,
-        -96
+        80
       ],
       "id": "c0b35231-3c0d-460f-88e1-ff46491416d2",
       "name": "Code7"
@@ -794,8 +794,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3.2,
       "position": [
-        4672,
-        -432
+        4640,
+        -384
       ],
       "id": "9eb569ed-c024-40c0-9563-9265ad4c95ce",
       "name": "Merge6"
@@ -808,7 +808,7 @@
       "typeVersion": 2,
       "position": [
         3888,
-        -320
+        -144
       ],
       "id": "a1eeb806-aa44-4b4d-a57a-582846526cfd",
       "name": "Code11"
@@ -821,7 +821,7 @@
       "typeVersion": 2,
       "position": [
         3872,
-        -528
+        -352
       ],
       "id": "767eb634-1409-4bea-b02b-c05d929ef998",
       "name": "Code12"
@@ -847,8 +847,8 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        1792,
-        -736
+        2224,
+        -816
       ],
       "id": "5f0112ca-8f10-411f-8914-5207fcf509ec",
       "name": "Google Drive8",
@@ -882,8 +882,8 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        1520,
-        -688
+        2016,
+        -816
       ],
       "id": "d4e66687-355e-4494-af2a-b71d25d30d35",
       "name": "Create Audio Folder",
@@ -913,7 +913,7 @@
       "typeVersion": 3,
       "position": [
         4288,
-        -528
+        -352
       ],
       "id": "a5754395-1d39-4ddb-8513-4be26ce33120",
       "name": "Saved Polish SRT",
@@ -943,7 +943,7 @@
       "typeVersion": 3,
       "position": [
         4304,
-        -320
+        -144
       ],
       "id": "26275c62-aed7-46b0-8e26-78fd96246437",
       "name": "Saved Chines SRT",
@@ -973,7 +973,7 @@
       "typeVersion": 3,
       "position": [
         4304,
-        -96
+        80
       ],
       "id": "f2bfa324-e75c-4a36-a79d-2d638c227284",
       "name": "Saved English SRT",
@@ -1002,8 +1002,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        4896,
-        -416
+        4800,
+        -368
       ],
       "id": "9afec378-bd64-4d99-9e31-77cbf8047453",
       "name": "Code13"
@@ -1016,7 +1016,7 @@
       "typeVersion": 2,
       "position": [
         5232,
-        -656
+        -688
       ],
       "id": "6972c630-8ec5-4f52-b68e-78239d6bcebe",
       "name": "Code14"
@@ -1054,7 +1054,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        3232,
+        3200,
         -560
       ]
     },
@@ -1071,7 +1071,7 @@
       "typeVersion": 1,
       "position": [
         3696,
-        -528
+        -352
       ],
       "id": "31a707a6-a582-4409-a7be-320ec9022b2d",
       "name": "ElevenLabs",
@@ -1095,7 +1095,7 @@
       "typeVersion": 1,
       "position": [
         3696,
-        -320
+        -144
       ],
       "id": "a54f2d07-ea69-45d5-83fa-e7b0dac1abd0",
       "name": "ElevenLabs1",
@@ -1119,7 +1119,7 @@
       "typeVersion": 1,
       "position": [
         3696,
-        -96
+        80
       ],
       "id": "abd74054-e754-4333-8526-a286ed098f55",
       "name": "ElevenLabs2",
@@ -1135,7 +1135,7 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3.2,
       "position": [
-        7696,
+        7344,
         -864
       ],
       "id": "2a6e326b-5dd2-4252-bffe-1f845d4523bf",
@@ -1151,8 +1151,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        8992,
-        192
+        8736,
+        160
       ],
       "id": "8e40524f-58a6-4db9-8b2b-3dc045c6d78c",
       "name": "Telegram4",
@@ -1174,8 +1174,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        9008,
-        -400
+        8752,
+        -432
       ],
       "id": "96c9c6ec-ca66-4db7-83a0-e01ccc46da9a",
       "name": "Telegram5",
@@ -1197,8 +1197,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        9120,
-        -864
+        8864,
+        -896
       ],
       "id": "8f700396-f6d6-411e-b904-fbdff8989c36",
       "name": "Telegram6",
@@ -1215,8 +1215,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3.2,
       "position": [
-        9568,
-        -880
+        9312,
+        -912
       ],
       "id": "19d3a471-a678-4a23-9e9a-c3bf5f841aa9",
       "name": "Merge17"
@@ -1226,8 +1226,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3.2,
       "position": [
-        9568,
-        -416
+        9312,
+        -448
       ],
       "id": "741db7d5-dd4a-464d-bc58-70da8de4816a",
       "name": "Merge18"
@@ -1237,8 +1237,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3.2,
       "position": [
-        9440,
-        112
+        9184,
+        80
       ],
       "id": "32d084bf-078c-4c87-b8b6-ee1ef3d893b0",
       "name": "Merge19"
@@ -1250,7 +1250,7 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3.2,
       "position": [
-        10016,
+        9664,
         -608
       ],
       "id": "7045837a-d1b0-4791-93da-4b2c1b7f8c51",
@@ -1277,8 +1277,8 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        6096,
-        -720
+        5744,
+        -688
       ],
       "id": "eb2c506c-e392-4e8a-9978-0c5231fe37d1",
       "name": "Create Folder in drive",
@@ -1318,8 +1318,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.6,
       "position": [
-        6304,
-        -720
+        5952,
+        -688
       ],
       "id": "9fc781d2-216e-42ee-851b-753608dffe51",
       "name": "Get audio and subtitles path",
@@ -1355,7 +1355,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        6848,
+        6496,
         -880
       ],
       "credentials": {
@@ -1380,7 +1380,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        7104,
+        6752,
         -880
       ],
       "id": "4bf74609-449b-417d-b6b6-7e27db08173a",
@@ -1406,7 +1406,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        7296,
+        6944,
         -880
       ],
       "id": "59443b7c-3ca4-4323-ab21-c59c6a309aa9",
@@ -1421,7 +1421,7 @@
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1,
       "position": [
-        7504,
+        7152,
         -880
       ],
       "id": "2a555c09-9f59-4854-895e-57c9454dba65",
@@ -1434,8 +1434,8 @@
       "type": "n8n-nodes-base.executeCommand",
       "typeVersion": 1,
       "position": [
-        7920,
-        -976
+        7568,
+        -896
       ],
       "id": "dcbe9b21-4188-4395-8e5a-4aa39c28ca90",
       "name": "Process polish video"
@@ -1447,8 +1447,8 @@
       "type": "n8n-nodes-base.executeCommand",
       "typeVersion": 1,
       "position": [
-        7904,
-        -704
+        7584,
+        -656
       ],
       "id": "f09aff67-30f7-465a-a632-741d06bc9fbe",
       "name": "process chines video"
@@ -1460,7 +1460,7 @@
       "type": "n8n-nodes-base.executeCommand",
       "typeVersion": 1,
       "position": [
-        7872,
+        7584,
         -480
       ],
       "id": "349f122b-e371-4623-83fe-3d6c046025e8",
@@ -1474,8 +1474,8 @@
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1,
       "position": [
-        8752,
-        -448
+        8496,
+        -480
       ],
       "id": "9f4caa45-955b-4a00-ab19-1641c083c36f",
       "name": "download chines video"
@@ -1488,8 +1488,8 @@
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1,
       "position": [
-        8784,
-        48
+        8528,
+        16
       ],
       "id": "53760959-1a15-4af8-9ffb-c9bec88a8409",
       "name": "download english video"
@@ -1512,8 +1512,8 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        9168,
-        -1184
+        8912,
+        -1216
       ],
       "id": "850af8a6-38c8-415b-bdcf-a11b72adc460",
       "name": "upload polish drive",
@@ -1542,8 +1542,8 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        9264,
-        -496
+        9008,
+        -528
       ],
       "id": "76cb1f7e-f88a-4f5a-8165-674e951d1e0b",
       "name": "upload chines video",
@@ -1572,8 +1572,8 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        9168,
-        16
+        8912,
+        -16
       ],
       "id": "a140d34f-e256-4bd6-b83d-a3abd27a2d7a",
       "name": "upload english video",
@@ -1656,7 +1656,7 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.6,
       "position": [
-        10384,
+        10032,
         -608
       ],
       "id": "02545d25-bd99-438d-80e3-24061d0e1b91",
@@ -1675,8 +1675,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -384,
-        -864
+        656,
+        -1040
       ],
       "id": "033b22b0-202e-4dd8-a957-0611fdaec444",
       "name": "Code4"
@@ -1714,7 +1714,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        3264,
+        3232,
         -1104
       ]
     },
@@ -1729,8 +1729,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        1216,
-        -624
+        1792,
+        -816
       ],
       "id": "dec19f3b-50d7-4c12-8e25-140767cbc66e",
       "name": "Edit a text message",
@@ -1752,7 +1752,7 @@
       "typeVersion": 1,
       "position": [
         4080,
-        -528
+        -352
       ],
       "id": "37855371-0df9-4343-81d9-683efd728adb",
       "name": "upload polish subtitles2"
@@ -1767,7 +1767,7 @@
       "typeVersion": 1,
       "position": [
         4080,
-        -320
+        -144
       ],
       "id": "18ae72d2-35fe-4f1e-92d8-10b810376aab",
       "name": "upload chines subtitles"
@@ -1782,7 +1782,7 @@
       "typeVersion": 1,
       "position": [
         4096,
-        -96
+        80
       ],
       "id": "d392d436-8b9b-43bf-b21b-130a3f4c6453",
       "name": "upload english subtitles"
@@ -1839,8 +1839,8 @@
       "type": "n8n-nodes-base.executeCommand",
       "typeVersion": 1,
       "position": [
-        8272,
-        -864
+        8000,
+        -896
       ],
       "id": "259615e3-15ef-43eb-90fb-6614b385c80a",
       "name": "Process polish video1"
@@ -1872,7 +1872,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        8560,
+        8208,
         -912
       ],
       "id": "95bcdd3d-caf0-4bc9-b0ce-38d96c79685c",
@@ -1887,8 +1887,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        9424,
-        -1168
+        9168,
+        -1200
       ],
       "id": "8022044a-74cf-44c5-b817-f2a21d185618",
       "name": "Telegram7",
@@ -1908,8 +1908,8 @@
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1,
       "position": [
-        8912,
-        -1184
+        8656,
+        -1216
       ],
       "id": "b28d388b-1844-43ce-af58-3d1c82c0e5bf",
       "name": "download polish video"
@@ -1932,8 +1932,8 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        9328,
-        -1008
+        9072,
+        -1040
       ],
       "id": "30598c72-b5c1-41b6-b5dc-1d53ee6ffda5",
       "name": "upload polish drive1",
@@ -1952,8 +1952,8 @@
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1,
       "position": [
-        8832,
-        -912
+        8576,
+        -944
       ],
       "id": "8462e1dd-236c-44b0-8285-5f80a11b8dbe",
       "name": "download polish video1"
@@ -1965,8 +1965,8 @@
       "type": "n8n-nodes-base.executeCommand",
       "typeVersion": 1,
       "position": [
-        8368,
-        -352
+        8016,
+        -368
       ],
       "id": "63607f8c-46c0-4f23-9405-92c9e18456db",
       "name": "Process polish video2"
@@ -1998,7 +1998,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        8560,
+        8208,
         -208
       ],
       "id": "1df305c7-8eeb-423b-be13-fb22005a8fa8",
@@ -2013,8 +2013,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        9488,
-        -144
+        9232,
+        -176
       ],
       "id": "0f4a2a51-b383-414d-a036-097e3cc0def0",
       "name": "Telegram8",
@@ -2034,8 +2034,8 @@
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1,
       "position": [
-        8896,
-        -224
+        8640,
+        -192
       ],
       "id": "7939c12e-1319-4aa4-a646-07da94558edb",
       "name": "download polish video2"
@@ -2047,7 +2047,7 @@
       "type": "n8n-nodes-base.executeCommand",
       "typeVersion": 1,
       "position": [
-        8256,
+        8000,
         -608
       ],
       "id": "7ccae86d-8acd-4b03-8d3b-e31fc2e5d7c9",
@@ -2080,7 +2080,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        8528,
+        8176,
         -608
       ],
       "id": "aec334b3-991e-459a-919d-02b70db7f65a",
@@ -2095,8 +2095,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        9456,
-        -640
+        9200,
+        -672
       ],
       "id": "e373ce32-0f33-4058-a4a2-2d23ef92048f",
       "name": "Telegram9",
@@ -2116,8 +2116,8 @@
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1,
       "position": [
-        8752,
-        -672
+        8496,
+        -704
       ],
       "id": "a1384645-9aa9-4a0a-985b-032bfbdad389",
       "name": "download polish video3"
@@ -2140,7 +2140,7 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        9200,
+        8944,
         -192
       ],
       "id": "8f76ba87-6509-42f4-9a09-85a886bd57e7",
@@ -2170,8 +2170,8 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        9040,
-        -656
+        8784,
+        -688
       ],
       "id": "4d0df96c-8cb8-40bf-9453-411219b1c218",
       "name": "upload chines video1",
@@ -2207,7 +2207,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        6816,
+        6464,
         -672
       ],
       "credentials": {
@@ -2226,7 +2226,7 @@
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1,
       "position": [
-        7504,
+        7152,
         -672
       ],
       "id": "6a4d0030-c91c-4a89-9037-3baec76df2c2",
@@ -2239,7 +2239,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        7072,
+        6720,
         -672
       ],
       "id": "d7c55564-978d-445f-bf1a-df8a38c0e02a",
@@ -2265,7 +2265,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        7296,
+        6944,
         -672
       ],
       "id": "cd61e803-53e2-49d0-8c82-ecb08a2940a1",
@@ -2278,7 +2278,7 @@
       "type": "n8n-nodes-base.executeCommand",
       "typeVersion": 1,
       "position": [
-        8096,
+        7808,
         -432
       ],
       "id": "82c4fba2-fc8f-409e-af8e-d377c82c711a",
@@ -2291,7 +2291,7 @@
       "type": "n8n-nodes-base.executeCommand",
       "typeVersion": 1,
       "position": [
-        8080,
+        7808,
         -656
       ],
       "id": "7169a2ea-a3ce-4a4d-924d-3663d548bf7a",
@@ -2304,7 +2304,7 @@
       "type": "n8n-nodes-base.executeCommand",
       "typeVersion": 1,
       "position": [
-        8080,
+        7808,
         -896
       ],
       "id": "1c346bed-8b86-42c9-bb55-c6ae0565771c",
@@ -2496,8 +2496,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.6,
       "position": [
-        5584,
-        -480
+        6320,
+        -368
       ],
       "id": "087ef80b-fbc7-4392-8aa8-7358f7e97248",
       "name": "Google Sheets2",
@@ -2580,7 +2580,7 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.6,
       "position": [
-        10416,
+        10064,
         -320
       ],
       "id": "cb19d30a-db1c-4ed0-99dd-03fe1504cd93",
@@ -2599,11 +2599,356 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        4704,
-        -1088
+        4720,
+        -1136
       ],
       "id": "f415b44c-5095-47ea-86eb-8c0cf1ae30ad",
       "name": "Code5"
+    },
+    {
+      "parameters": {
+        "content": "**Telegram Trigger**  \nStarts the workflow whenever a new Telegram message or button interaction (callback query) is received.  \nIt captures both text messages and button clicks from users.\n\n**Code Node**  \nExtracts and organizes key Telegram data — such as `chatId`, `text`, `message_id`, and `callback_query.data` — into a clean JSON format for easier handling in later nodes.\n\n**If Node**  \nChecks the received data to decide the next workflow path.  \nIt triggers when either a user sends a message or presses a “Revise” button (based on `data` or `message` values).\n",
+        "height": 432,
+        "width": 704,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -400,
+        -928
+      ],
+      "id": "26d0d88c-8d61-49ae-976b-ab2d83308a0a",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "**AI Agent**  \nGenerates a short, structured Polish prayer based on the provided `{TOPIK}` using LangChain.  \nFollows a calm, humble, and grateful tone while including trust, protection, and gratitude lines.  \nProduces formatted verses with optional imagery like *światło* or *oddech* for guidance.  \n\n**Code4 Node**  \nCleans the AI-generated text before sending it to the next node.  \nRemoves footer lines, trims extra spaces, and outputs a clean `{ cleanedText }` JSON object.  \nEnsures the response is neat and ready for sending or saving in subsequent workflow steps.\n",
+        "height": 720,
+        "width": 448,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        336,
+        -1360
+      ],
+      "id": "7a8b848b-a585-4dd1-87f9-4278a338856f",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "**Google Sheets Node**  \nAppends workflow data (chat ID, user text, AI response, and callback choice) to a connected Google Sheet for record-keeping and tracking.  \n\n**Telegram Node**  \nSends the AI-generated prayer back to the user with an inline keyboard containing **“Accept”** and **“Revise”** buttons for quick interaction.  \n\n**Code1 Node**  \nProcesses Telegram’s response — detects whether the user accepted or requested revision, then structures this data for further actions or looping.  \n",
+        "height": 624,
+        "width": 592
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        800,
+        -1296
+      ],
+      "id": "e66b34f3-cbef-44bb-8757-3aafa2268f6e",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "**If Node**  \nChecks if the user clicked the **“Accept”** button in Telegram.  \nIf `data` equals `\"Accept\"`, the workflow continues through the **true** branch; otherwise, it stops or follows the **false** path.  \n",
+        "height": 320,
+        "width": 288,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1424,
+        -880
+      ],
+      "id": "1e930122-c85e-4ee0-b93a-269bb01bebad",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "###  **Edit a Text Message**\nUpdates the original Telegram message text before generating audio, ensuring clarity and synchronization in user interaction.\n\n###  **Create Audio Folder**\nCreates a new Google Drive folder inside **“Audio”** using the Telegram `message_id` as the folder name — helps organize each audio file output.\n\n###  **Google Drive8**\nCreates a subfolder inside **“Subtitles”** (named after the same `message_id`) for storing transcription or subtitle files related to the audio.",
+        "height": 576,
+        "width": 640,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1744,
+        -1184
+      ],
+      "id": "5e30af9a-df44-4420-a652-77bb8c18b2ea",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "###  **Code2**\nCleans and formats the AI-generated prayer text for audio synthesis — removes unwanted lines, replaces line breaks with `...`, and prepares JSON data (including `model_id` and voice settings) for TTS processing.\n",
+        "height": 352,
+        "width": 256,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2416,
+        -1024
+      ],
+      "id": "41d7d01a-5c35-4065-bf19-76f5f1ab8329",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "content": "###  **Code14**\nMerges data from two sources — `Code3` (audio info) and `Code13` (subtitles) — using `MessageId`.  \nPrepares clean JSON rows containing English content, audio links, and subtitles.\n\n### **Google Sheets1**\nAppends the merged data into the **“audio-files”** sheet in the **AWAKEN - GixiAI** Google Sheet.  \nStores message ID, chat ID, content, and audio/subtitle links.\n\n###  **Create Folder in Drive**\nCreates a folder in **Google Drive → ReadyVideos** named after the `MessageId`.  \nUsed for storing generated video or related media files.\n\n###  **Get Audio and Subtitles Path**\nFetches back the appended sheet row (by `MessageId`) to retrieve stored audio and subtitle URLs.  \nPrepares them for the next workflow step (e.g., video creation or syncing).\n",
+        "height": 576,
+        "width": 928,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        5200,
+        -1088
+      ],
+      "id": "98162a6c-3b15-4e1f-9584-4893000011d9",
+      "name": "Sticky Note6"
+    },
+    {
+      "parameters": {
+        "content": "## Video & Music Selection \n\nThis section of the workflow automates the random selection, download, and preparation of both a background video and music file from Google Drive for later use in media generation.\n---\n### Logic Overview\n- Fetches all available videos from a specific Google Drive folder.  \n- Randomly picks one video, downloads it, and saves it locally as `Video.mp4`.  \n- Similarly, retrieves all audio tracks, selects one randomly, downloads it, and saves it as `music.mp3`.  \n- Finally, both files are merged into a unified stream for the next stage (media mixing or processing).\n\n---\n### Purpose\nCreates a dynamic, non-repetitive background by pairing a random video with a random audio track.  \nEnsures fresh content each time the workflow runs—no manual selection required.\n---\n### Key Outputs\n- `Video.mp4` → Randomly selected background video  \n- `music.mp3` → Randomly selected background audio  \n- Both combined in `Merge8` for downstream processing (e.g., FFmpeg or video rendering)\n",
+        "height": 928,
+        "width": 1184
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        6304,
+        -1424
+      ],
+      "id": "9b21b065-cad1-4995-9c80-fc284446d05e",
+      "name": "Sticky Note7"
+    },
+    {
+      "parameters": {
+        "content": "### Video Processing Workflow (FFmpeg Execution)\n\nAutomates the creation of **language-specific videos** by merging a common background video (`Video.mp4`) with corresponding audio and subtitles (`English`, `Polish`, `Chines`).  \nEnsures consistent formatting, font styling, and synchronization — producing final `*-working.mp4` files ready for publishing.\n",
+        "height": 928,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        7504,
+        -1248
+      ],
+      "id": "13eef899-d04a-42b2-b2d5-1ab2704dd6f2",
+      "name": "Sticky Note8"
+    },
+    {
+      "parameters": {
+        "content": "### Background Music Mixing (FFmpeg Execution)\n\nMerges each language video with looping background music (`music.mp3`) at low volume using FFmpeg.  \nOutputs final balanced files (`*-output.mp4`) for English, Polish, and Chinese versions.\n",
+        "height": 928,
+        "width": 192,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        7760,
+        -1200
+      ],
+      "id": "24437d3c-99bf-45b6-9f4b-161f343d80d5",
+      "name": "Sticky Note9"
+    },
+    {
+      "parameters": {
+        "content": "### Output File Validation Workflow\n\nThis workflow **verifies the integrity and size** of the generated video files (`Polish-output.mp4`).  \nEach `Execute Command` node uses the `stat` command to check the file size, and the following `If` node compares it against a predefined threshold (`> 51379224 bytes`).  \n\nIf the file meets the expected size, it indicates that the video was generated successfully; otherwise, it flags an incomplete or failed output.  \nThis ensures all rendered videos are complete and valid before moving to the next workflow stage.\n",
+        "height": 1200,
+        "width": 400,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        7968,
+        -1248
+      ],
+      "id": "5d5845e3-d3de-4baf-ba65-87e6a933cdeb",
+      "name": "Sticky Note10"
+    },
+    {
+      "parameters": {
+        "content": "### Video Upload & Telegram Delivery Workflow\n\nThis workflow automates sharing **language-specific videos** (English, Polish, Chinese) by uploading them to **Google Drive** and sending them via **Telegram**.\n\n- **Download Nodes:** Fetch final videos from `/home/node/n8n-uploads/`.  \n- **Google Drive Upload:** Upload videos to a specific Drive folder.  \n- **Telegram Nodes:** Send videos or Drive links to users depending on file size.  \n- **Merge Nodes:** Combine results from all language branches.\n\n **English path works fully** — downloads, uploads, and sends via Telegram.  \n **Polish and Chinese paths** are present but Removes the functionality yet.\n",
+        "height": 1888,
+        "width": 1424,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        8400,
+        -1504
+      ],
+      "id": "1e939aa7-67ef-49f7-b5ba-7dfd1e69c228",
+      "name": "Sticky Note11"
+    },
+    {
+      "parameters": {
+        "height": 976,
+        "width": 1136
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        8416,
+        -1248
+      ],
+      "id": "c86b12a0-d5ca-45ed-b728-ee155109f7d4",
+      "name": "Sticky Note12"
+    },
+    {
+      "parameters": {
+        "content": "### English Video Upload & Telegram Delivery Workflow\n",
+        "height": 576,
+        "width": 1024,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        8416,
+        -256
+      ],
+      "id": "ca46a0ce-62c3-4893-aef4-52d68f739d90",
+      "name": "Sticky Note13"
+    },
+    {
+      "parameters": {
+        "content": "### Google Sheets Update\n\nAppends video details to the *“Video -content”* sheet in **AWAKEN - GixiAI**.  \nStores the English video link, placeholders for Polish and Chinese links, and the related `MessageId` — ensuring all video outputs are logged and trackable.  \n",
+        "height": 400,
+        "width": 256
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        9984,
+        -848
+      ],
+      "id": "6a34137a-9957-4ba6-b27b-5010066bbb1f",
+      "name": "Sticky Note14"
+    },
+    {
+      "parameters": {
+        "content": "### AI Translation Workflow\n\nThis section automates multilingual translation using **OpenAI GPT models**.  \nIt processes text through two AI agents — one translating into **English**, the other into **Chinese** — ensuring clean, emoji-free, and formatted outputs using `'...'` for line breaks.  \nEach agent connects to its respective OpenAI Chat Model for accurate and consistent translation results.\n",
+        "height": 896,
+        "width": 400,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2704,
+        -1152
+      ],
+      "id": "c108e833-df1a-4750-8fcd-5f3813976778",
+      "name": "Sticky Note15"
+    },
+    {
+      "parameters": {
+        "content": "### ElevenLabs Audio Generation Workflow\n\nThis workflow generates voiceovers in English, Polish, and Chinese using the ElevenLabs Text-to-Speech API.  \nEach node sends text input and receives an MP3 file with configured voice settings.\n\n- **English Node:** Fully connected and active, generating English audio via `eleven_multilingual_v2`.  \n- **Polish & Chinese Nodes:** Configured correctly but currently disconnected from the main workflow.  \n\nAll nodes share the same API key and parameters to maintain consistent voice quality.\n",
+        "height": 1072,
+        "width": 368
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3136,
+        -1472
+      ],
+      "id": "dd2c61d6-bcb1-4427-b059-a226c8f15b27",
+      "name": "Sticky Note16"
+    },
+    {
+      "parameters": {
+        "content": "### Google Drive Audio Upload Workflow\n\nThis workflow uploads generated language audio files (English, Polish, and Chinese) to Google Drive and prepares structured data for later use.\n\nEach language has its own **upload** and **Google Drive** node to save the MP3 file (`English.mp3`, `Polish.mp3`, `Chines.mp3`) into a dynamically created folder.  \nThe workflow also includes **Code nodes** (`Code3`, `Code5`) that compile audio links and content details into JSON format for further integration (e.g., Google Sheets).\n\n- **English path** — fully connected and functional.  \n- **Polish & Chinese paths** — configured but currently disconnected from the main workflow.  \n- Final data merge occurs in `Merge2`, combining audio and metadata for English output.\n",
+        "height": 896,
+        "width": 1376,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3536,
+        -1472
+      ],
+      "id": "b9b0993c-bfc6-4b45-b891-297feb8f920b",
+      "name": "Sticky Note17"
+    },
+    {
+      "parameters": {
+        "content": "### English audio Upload ",
+        "height": 192,
+        "width": 656,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3552,
+        -784
+      ],
+      "id": "7f2215d8-15e4-4eed-8ad0-4a00211b416e",
+      "name": "Sticky Note18"
+    },
+    {
+      "parameters": {
+        "content": "### Subtitle Workflow Overview\n\nThis workflow automates **subtitle generation** for English, Polish, and Chinese using **ElevenLabs** and **Google Drive**.  \nEach node converts audio to text, formats it into `.srt`, and uploads it to Drive.  \n\n- **English path:** Fully connected and functional.  \n- **Polish & Chinese:** Set up but currently disconnected from the main workflow.\n",
+        "height": 816,
+        "width": 944,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3600,
+        -544
+      ],
+      "id": "7b5929a0-7587-433a-a9a4-096e3cdeedac",
+      "name": "Sticky Note19"
+    },
+    {
+      "parameters": {
+        "content": "### English Subtitle Workflow",
+        "height": 208,
+        "width": 816,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3664,
+        32
+      ],
+      "id": "121bd4f2-a80f-4275-9e86-e2920d8ddfad",
+      "name": "Sticky Note20"
+    },
+    {
+      "parameters": {
+        "content": "### Subtitle Merge Workflow\n\nMerges data from multiple nodes, extracting the `message_id` and English subtitle link, then formats them into JSON for Google Sheets or later use.\n",
+        "height": 352,
+        "width": 368,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        4576,
+        -560
+      ],
+      "id": "a5f25fe4-acd6-4d16-9bf9-a03706c8fe1e",
+      "name": "Sticky Note21"
     }
   ],
   "connections": {
@@ -3542,13 +3887,7 @@
     },
     "upload chines video1": {
       "main": [
-        [
-          {
-            "node": "Telegram9",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Get all music files1": {
