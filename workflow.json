@@ -34,8 +34,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        1024,
-        -1040
+        960,
+        -1328
       ],
       "id": "d9ad8635-28e3-4d0a-aff2-c6861ddc6ceb",
       "name": "Telegram",
@@ -86,8 +86,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        144,
-        -656
+        80,
+        -944
       ],
       "id": "c997a727-3652-4bc0-8d0e-1a373c68de29",
       "name": "If1"
@@ -101,8 +101,8 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2,
       "position": [
-        368,
-        -992
+        304,
+        -1280
       ],
       "id": "48671c67-6b8a-44dc-85c2-b8bee9796086",
       "name": "AI Agent"
@@ -119,15 +119,15 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        384,
-        -768
+        320,
+        -1056
       ],
       "id": "a853d8e1-f49c-425d-a13a-ef00a7b42a9c",
       "name": "OpenAI Chat Model",
       "credentials": {
         "openAiApi": {
-          "id": "5GV805zhaCuBmSjp",
-          "name": "New Key"
+          "id": "RjQTpQLWHwaPlvGI",
+          "name": "Awakenart Openai"
         }
       }
     },
@@ -220,8 +220,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.6,
       "position": [
-        816,
-        -928
+        752,
+        -1216
       ],
       "id": "8a8e6fe1-2b21-46a5-a287-0bb40fb538b4",
       "name": "Google Sheets",
@@ -241,8 +241,8 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        496,
-        -784
+        432,
+        -1072
       ],
       "id": "f1352e39-3212-4a88-bb0e-ae8e5dd6ca1e",
       "name": "Simple Memory"
@@ -254,8 +254,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -64,
-        -656
+        -128,
+        -944
       ],
       "id": "0b0cefe3-92fd-465b-a32b-b122bffea514",
       "name": "Code"
@@ -269,8 +269,8 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2,
       "position": [
-        2752,
-        -560
+        2688,
+        -848
       ],
       "id": "a68a52d9-2547-4f53-bbc9-a03454e49e25",
       "name": "AI Agent1"
@@ -287,15 +287,15 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        2752,
-        -384
+        2688,
+        -672
       ],
       "id": "ff39dd42-37d8-4fee-b90f-1c792759bf04",
       "name": "OpenAI Chat Model1",
       "credentials": {
         "openAiApi": {
-          "id": "5GV805zhaCuBmSjp",
-          "name": "New Key"
+          "id": "RjQTpQLWHwaPlvGI",
+          "name": "Awakenart Openai"
         }
       }
     },
@@ -306,8 +306,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1216,
-        -928
+        1152,
+        -1216
       ],
       "id": "2a58a1a5-ab20-467c-bc18-9dae89d19b1d",
       "name": "Code1"
@@ -340,8 +340,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        1488,
-        -688
+        1424,
+        -976
       ],
       "id": "4b8d9b75-187e-4e85-a458-83d71741c186",
       "name": "If"
@@ -355,8 +355,8 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2,
       "position": [
-        2816,
-        -880
+        2752,
+        -1168
       ],
       "id": "fc4b04fa-b8eb-402b-a6be-8c07d5af6a03",
       "name": "AI Agent2"
@@ -373,15 +373,15 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
       "position": [
-        2816,
-        -720
+        2752,
+        -1008
       ],
       "id": "5610db5f-4b34-4c1a-9002-c463edde26b3",
       "name": "OpenAI Chat Model2",
       "credentials": {
         "openAiApi": {
-          "id": "5GV805zhaCuBmSjp",
-          "name": "New Key"
+          "id": "RjQTpQLWHwaPlvGI",
+          "name": "Awakenart Openai"
         }
       }
     },
@@ -392,8 +392,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2464,
-        -816
+        2400,
+        -1104
       ],
       "id": "67e7f2e9-68b9-4fbb-bc4a-56d29b6f01c3",
       "name": "Code2"
@@ -432,8 +432,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        3232,
-        -864
+        3168,
+        -1152
       ]
     },
     {
@@ -454,8 +454,8 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        3872,
-        -1200
+        3808,
+        -1488
       ],
       "id": "64d37174-9e3c-403d-906a-8950d12b01e8",
       "name": "Google Drive2",
@@ -484,8 +484,8 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        3904,
-        -960
+        3840,
+        -1248
       ],
       "id": "29422e5c-447a-4c0d-969c-8952407efc0c",
       "name": "Google Drive3",
@@ -514,8 +514,8 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        3968,
-        -768
+        3904,
+        -1056
       ],
       "id": "9940b827-72b2-461f-9ddd-573fdca67e3f",
       "name": "Google Drive4",
@@ -712,8 +712,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.6,
       "position": [
-        5504,
-        -688
+        5440,
+        -976
       ],
       "id": "fb6a0187-53a0-4039-9a81-ee69efb3ac60",
       "name": "Google Sheets1",
@@ -735,8 +735,8 @@
       "type": "n8n-nodes-base.telegramTrigger",
       "typeVersion": 1.2,
       "position": [
-        -272,
-        -656
+        -336,
+        -944
       ],
       "id": "d2e5dd66-7be8-441d-9332-356e3462d12e",
       "name": "Telegram Trigger",
@@ -755,8 +755,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3.2,
       "position": [
-        4432,
-        -1088
+        4368,
+        -1376
       ],
       "id": "ec2ab981-4580-45f7-97c9-63cc4b24ff5b",
       "name": "Merge2"
@@ -768,8 +768,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        4720,
-        -848
+        4656,
+        -1136
       ],
       "id": "a0e87a29-98fa-4307-a979-ecc0cc11753d",
       "name": "Code3"
@@ -781,8 +781,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        3888,
-        80
+        3824,
+        -208
       ],
       "id": "c0b35231-3c0d-460f-88e1-ff46491416d2",
       "name": "Code7"
@@ -794,8 +794,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3.2,
       "position": [
-        4640,
-        -384
+        4576,
+        -672
       ],
       "id": "9eb569ed-c024-40c0-9563-9265ad4c95ce",
       "name": "Merge6"
@@ -807,8 +807,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        3888,
-        -144
+        3824,
+        -432
       ],
       "id": "a1eeb806-aa44-4b4d-a57a-582846526cfd",
       "name": "Code11"
@@ -820,8 +820,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        3872,
-        -352
+        3808,
+        -640
       ],
       "id": "767eb634-1409-4bea-b02b-c05d929ef998",
       "name": "Code12"
@@ -847,8 +847,8 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        2224,
-        -816
+        2160,
+        -1104
       ],
       "id": "5f0112ca-8f10-411f-8914-5207fcf509ec",
       "name": "Google Drive8",
@@ -882,8 +882,8 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        2016,
-        -816
+        1952,
+        -1104
       ],
       "id": "d4e66687-355e-4494-af2a-b71d25d30d35",
       "name": "Create Audio Folder",
@@ -912,8 +912,8 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        4288,
-        -352
+        4224,
+        -640
       ],
       "id": "a5754395-1d39-4ddb-8513-4be26ce33120",
       "name": "Saved Polish SRT",
@@ -942,8 +942,8 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        4304,
-        -144
+        4240,
+        -432
       ],
       "id": "26275c62-aed7-46b0-8e26-78fd96246437",
       "name": "Saved Chines SRT",
@@ -972,8 +972,8 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        4304,
-        80
+        4240,
+        -208
       ],
       "id": "f2bfa324-e75c-4a36-a79d-2d638c227284",
       "name": "Saved English SRT",
@@ -989,8 +989,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3.2,
       "position": [
-        4992,
-        -656
+        4928,
+        -944
       ],
       "id": "bd015add-cebe-4fbe-9e68-fb39c56a589d",
       "name": "Merge7"
@@ -1002,8 +1002,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        4800,
-        -368
+        4736,
+        -656
       ],
       "id": "9afec378-bd64-4d99-9e31-77cbf8047453",
       "name": "Code13"
@@ -1015,8 +1015,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        5232,
-        -688
+        5168,
+        -976
       ],
       "id": "6972c630-8ec5-4f52-b68e-78239d6bcebe",
       "name": "Code14"
@@ -1054,8 +1054,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        3200,
-        -560
+        3136,
+        -848
       ]
     },
     {
@@ -1070,8 +1070,8 @@
       "type": "@elevenlabs/n8n-nodes-elevenlabs.elevenLabs",
       "typeVersion": 1,
       "position": [
-        3696,
-        -352
+        3632,
+        -640
       ],
       "id": "31a707a6-a582-4409-a7be-320ec9022b2d",
       "name": "ElevenLabs",
@@ -1094,8 +1094,8 @@
       "type": "@elevenlabs/n8n-nodes-elevenlabs.elevenLabs",
       "typeVersion": 1,
       "position": [
-        3696,
-        -144
+        3632,
+        -432
       ],
       "id": "a54f2d07-ea69-45d5-83fa-e7b0dac1abd0",
       "name": "ElevenLabs1",
@@ -1118,8 +1118,8 @@
       "type": "@elevenlabs/n8n-nodes-elevenlabs.elevenLabs",
       "typeVersion": 1,
       "position": [
-        3696,
-        80
+        3632,
+        -208
       ],
       "id": "abd74054-e754-4333-8526-a286ed098f55",
       "name": "ElevenLabs2",
@@ -1135,8 +1135,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3.2,
       "position": [
-        7344,
-        -864
+        7280,
+        -1152
       ],
       "id": "2a6e326b-5dd2-4252-bffe-1f845d4523bf",
       "name": "Merge8"
@@ -1151,8 +1151,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        8736,
-        160
+        8672,
+        -128
       ],
       "id": "8e40524f-58a6-4db9-8b2b-3dc045c6d78c",
       "name": "Telegram4",
@@ -1174,8 +1174,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        8752,
-        -432
+        8688,
+        -720
       ],
       "id": "96c9c6ec-ca66-4db7-83a0-e01ccc46da9a",
       "name": "Telegram5",
@@ -1197,8 +1197,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        8864,
-        -896
+        8800,
+        -1184
       ],
       "id": "8f700396-f6d6-411e-b904-fbdff8989c36",
       "name": "Telegram6",
@@ -1215,8 +1215,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3.2,
       "position": [
-        9312,
-        -912
+        9248,
+        -1200
       ],
       "id": "19d3a471-a678-4a23-9e9a-c3bf5f841aa9",
       "name": "Merge17"
@@ -1226,8 +1226,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3.2,
       "position": [
-        9312,
-        -448
+        9248,
+        -736
       ],
       "id": "741db7d5-dd4a-464d-bc58-70da8de4816a",
       "name": "Merge18"
@@ -1237,8 +1237,8 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3.2,
       "position": [
-        9184,
-        80
+        9120,
+        -208
       ],
       "id": "32d084bf-078c-4c87-b8b6-ee1ef3d893b0",
       "name": "Merge19"
@@ -1250,44 +1250,11 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3.2,
       "position": [
-        9664,
-        -608
+        9600,
+        -896
       ],
       "id": "7045837a-d1b0-4791-93da-4b2c1b7f8c51",
       "name": "Merge20"
-    },
-    {
-      "parameters": {
-        "resource": "folder",
-        "name": "={{ $('Google Sheets1').item.json.MessageId }}",
-        "driveId": {
-          "__rl": true,
-          "mode": "list",
-          "value": "My Drive"
-        },
-        "folderId": {
-          "__rl": true,
-          "value": "1OyAy8lJtzJ6eG_aU8BVhu-K-IghCypCN",
-          "mode": "list",
-          "cachedResultName": "ReadyVideos",
-          "cachedResultUrl": "https://drive.google.com/drive/folders/1OyAy8lJtzJ6eG_aU8BVhu-K-IghCypCN"
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.googleDrive",
-      "typeVersion": 3,
-      "position": [
-        5744,
-        -688
-      ],
-      "id": "eb2c506c-e392-4e8a-9978-0c5231fe37d1",
-      "name": "Create Folder in drive",
-      "credentials": {
-        "googleDriveOAuth2Api": {
-          "id": "0pB0M8kcz3zGIDQC",
-          "name": "przebudzonezdrowie"
-        }
-      }
     },
     {
       "parameters": {
@@ -1318,8 +1285,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.6,
       "position": [
-        5952,
-        -688
+        5888,
+        -976
       ],
       "id": "9fc781d2-216e-42ee-851b-753608dffe51",
       "name": "Get audio and subtitles path",
@@ -1355,8 +1322,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        6496,
-        -880
+        6432,
+        -1168
       ],
       "credentials": {
         "oAuth2Api": {
@@ -1380,8 +1347,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        6752,
-        -880
+        6688,
+        -1168
       ],
       "id": "4bf74609-449b-417d-b6b6-7e27db08173a",
       "name": "select randome video"
@@ -1406,8 +1373,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        6944,
-        -880
+        6880,
+        -1168
       ],
       "id": "59443b7c-3ca4-4323-ab21-c59c6a309aa9",
       "name": "download video"
@@ -1421,8 +1388,8 @@
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1,
       "position": [
-        7152,
-        -880
+        7088,
+        -1168
       ],
       "id": "2a555c09-9f59-4854-895e-57c9454dba65",
       "name": "uplod video"
@@ -1434,8 +1401,8 @@
       "type": "n8n-nodes-base.executeCommand",
       "typeVersion": 1,
       "position": [
-        7568,
-        -896
+        7504,
+        -1184
       ],
       "id": "dcbe9b21-4188-4395-8e5a-4aa39c28ca90",
       "name": "Process polish video"
@@ -1447,8 +1414,8 @@
       "type": "n8n-nodes-base.executeCommand",
       "typeVersion": 1,
       "position": [
-        7584,
-        -656
+        7520,
+        -944
       ],
       "id": "f09aff67-30f7-465a-a632-741d06bc9fbe",
       "name": "process chines video"
@@ -1460,8 +1427,8 @@
       "type": "n8n-nodes-base.executeCommand",
       "typeVersion": 1,
       "position": [
-        7584,
-        -480
+        7520,
+        -768
       ],
       "id": "349f122b-e371-4623-83fe-3d6c046025e8",
       "name": "process english video"
@@ -1474,8 +1441,8 @@
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1,
       "position": [
-        8496,
-        -480
+        8432,
+        -768
       ],
       "id": "9f4caa45-955b-4a00-ab19-1641c083c36f",
       "name": "download chines video"
@@ -1488,8 +1455,8 @@
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1,
       "position": [
-        8528,
-        16
+        8464,
+        -272
       ],
       "id": "53760959-1a15-4af8-9ffb-c9bec88a8409",
       "name": "download english video"
@@ -1512,8 +1479,8 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        8912,
-        -1216
+        8848,
+        -1504
       ],
       "id": "850af8a6-38c8-415b-bdcf-a11b72adc460",
       "name": "upload polish drive",
@@ -1542,8 +1509,8 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        9008,
-        -528
+        8944,
+        -816
       ],
       "id": "76cb1f7e-f88a-4f5a-8165-674e951d1e0b",
       "name": "upload chines video",
@@ -1572,8 +1539,8 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        8912,
-        -16
+        8848,
+        -304
       ],
       "id": "a140d34f-e256-4bd6-b83d-a3abd27a2d7a",
       "name": "upload english video",
@@ -1656,8 +1623,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.6,
       "position": [
-        10032,
-        -608
+        9968,
+        -896
       ],
       "id": "02545d25-bd99-438d-80e3-24061d0e1b91",
       "name": "upload video drive links",
@@ -1675,8 +1642,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        656,
-        -1040
+        592,
+        -1328
       ],
       "id": "033b22b0-202e-4dd8-a957-0611fdaec444",
       "name": "Code4"
@@ -1714,8 +1681,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        3232,
-        -1104
+        3168,
+        -1392
       ]
     },
     {
@@ -1729,8 +1696,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        1792,
-        -816
+        1728,
+        -1104
       ],
       "id": "dec19f3b-50d7-4c12-8e25-140767cbc66e",
       "name": "Edit a text message",
@@ -1751,8 +1718,8 @@
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1,
       "position": [
-        4080,
-        -352
+        4016,
+        -640
       ],
       "id": "37855371-0df9-4343-81d9-683efd728adb",
       "name": "upload polish subtitles2"
@@ -1766,8 +1733,8 @@
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1,
       "position": [
-        4080,
-        -144
+        4016,
+        -432
       ],
       "id": "18ae72d2-35fe-4f1e-92d8-10b810376aab",
       "name": "upload chines subtitles"
@@ -1781,8 +1748,8 @@
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1,
       "position": [
-        4096,
-        80
+        4032,
+        -208
       ],
       "id": "d392d436-8b9b-43bf-b21b-130a3f4c6453",
       "name": "upload english subtitles"
@@ -1796,8 +1763,8 @@
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1,
       "position": [
-        3584,
-        -1184
+        3520,
+        -1472
       ],
       "id": "5affd18c-7f21-4e33-b806-1b6f12ed3b5f",
       "name": "upload polish subtitles1"
@@ -1811,8 +1778,8 @@
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1,
       "position": [
-        3600,
-        -960
+        3536,
+        -1248
       ],
       "id": "3d2945ee-4f10-4a27-bbe1-069d8d27d4cc",
       "name": "upload chines audio"
@@ -1826,8 +1793,8 @@
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1,
       "position": [
-        3648,
-        -736
+        3584,
+        -1024
       ],
       "id": "565ce941-7ae4-4048-a17f-21641ce32e2d",
       "name": "upload english audio"
@@ -1839,8 +1806,8 @@
       "type": "n8n-nodes-base.executeCommand",
       "typeVersion": 1,
       "position": [
-        8000,
-        -896
+        7936,
+        -1184
       ],
       "id": "259615e3-15ef-43eb-90fb-6614b385c80a",
       "name": "Process polish video1"
@@ -1872,8 +1839,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        8208,
-        -912
+        8144,
+        -1200
       ],
       "id": "95bcdd3d-caf0-4bc9-b0ce-38d96c79685c",
       "name": "If2"
@@ -1887,8 +1854,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        9168,
-        -1200
+        9104,
+        -1488
       ],
       "id": "8022044a-74cf-44c5-b817-f2a21d185618",
       "name": "Telegram7",
@@ -1908,8 +1875,8 @@
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1,
       "position": [
-        8656,
-        -1216
+        8592,
+        -1504
       ],
       "id": "b28d388b-1844-43ce-af58-3d1c82c0e5bf",
       "name": "download polish video"
@@ -1932,8 +1899,8 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        9072,
-        -1040
+        9008,
+        -1328
       ],
       "id": "30598c72-b5c1-41b6-b5dc-1d53ee6ffda5",
       "name": "upload polish drive1",
@@ -1952,21 +1919,21 @@
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1,
       "position": [
-        8576,
-        -944
+        8512,
+        -1232
       ],
       "id": "8462e1dd-236c-44b0-8285-5f80a11b8dbe",
       "name": "download polish video1"
     },
     {
       "parameters": {
-        "command": "stat -c%s /home/node/n8n-uploads/Polish-output.mp4\n"
+        "command": "stat -c%s /home/node/n8n-uploads/English-output.mp4\n"
       },
       "type": "n8n-nodes-base.executeCommand",
       "typeVersion": 1,
       "position": [
-        8016,
-        -368
+        7952,
+        -656
       ],
       "id": "63607f8c-46c0-4f23-9405-92c9e18456db",
       "name": "Process polish video2"
@@ -1998,8 +1965,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        8208,
-        -208
+        8144,
+        -496
       ],
       "id": "1df305c7-8eeb-423b-be13-fb22005a8fa8",
       "name": "If3"
@@ -2013,8 +1980,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        9232,
-        -176
+        9168,
+        -464
       ],
       "id": "0f4a2a51-b383-414d-a036-097e3cc0def0",
       "name": "Telegram8",
@@ -2034,8 +2001,8 @@
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1,
       "position": [
-        8640,
-        -192
+        8576,
+        -480
       ],
       "id": "7939c12e-1319-4aa4-a646-07da94558edb",
       "name": "download polish video2"
@@ -2047,8 +2014,8 @@
       "type": "n8n-nodes-base.executeCommand",
       "typeVersion": 1,
       "position": [
-        8000,
-        -608
+        7936,
+        -896
       ],
       "id": "7ccae86d-8acd-4b03-8d3b-e31fc2e5d7c9",
       "name": "Process polish video3"
@@ -2080,8 +2047,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        8176,
-        -608
+        8112,
+        -896
       ],
       "id": "aec334b3-991e-459a-919d-02b70db7f65a",
       "name": "If4"
@@ -2095,8 +2062,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        9200,
-        -672
+        9136,
+        -960
       ],
       "id": "e373ce32-0f33-4058-a4a2-2d23ef92048f",
       "name": "Telegram9",
@@ -2116,8 +2083,8 @@
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1,
       "position": [
-        8496,
-        -704
+        8432,
+        -992
       ],
       "id": "a1384645-9aa9-4a0a-985b-032bfbdad389",
       "name": "download polish video3"
@@ -2140,8 +2107,8 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        8944,
-        -192
+        8880,
+        -480
       ],
       "id": "8f76ba87-6509-42f4-9a09-85a886bd57e7",
       "name": "upload english video1",
@@ -2170,8 +2137,8 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        8784,
-        -688
+        8720,
+        -976
       ],
       "id": "4d0df96c-8cb8-40bf-9453-411219b1c218",
       "name": "upload chines video1",
@@ -2207,8 +2174,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        6464,
-        -672
+        6400,
+        -960
       ],
       "credentials": {
         "googleDriveOAuth2Api": {
@@ -2226,8 +2193,8 @@
       "type": "n8n-nodes-base.readWriteFile",
       "typeVersion": 1,
       "position": [
-        7152,
-        -672
+        7088,
+        -960
       ],
       "id": "6a4d0030-c91c-4a89-9037-3baec76df2c2",
       "name": "uplod music"
@@ -2239,8 +2206,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        6720,
-        -672
+        6656,
+        -960
       ],
       "id": "d7c55564-978d-445f-bf1a-df8a38c0e02a",
       "name": "Select random music"
@@ -2265,8 +2232,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        6944,
-        -672
+        6880,
+        -960
       ],
       "id": "cd61e803-53e2-49d0-8c82-ecb08a2940a1",
       "name": "download music"
@@ -2278,8 +2245,8 @@
       "type": "n8n-nodes-base.executeCommand",
       "typeVersion": 1,
       "position": [
-        7808,
-        -432
+        7744,
+        -720
       ],
       "id": "82c4fba2-fc8f-409e-af8e-d377c82c711a",
       "name": "Process English Music"
@@ -2291,8 +2258,8 @@
       "type": "n8n-nodes-base.executeCommand",
       "typeVersion": 1,
       "position": [
-        7808,
-        -656
+        7744,
+        -944
       ],
       "id": "7169a2ea-a3ce-4a4d-924d-3663d548bf7a",
       "name": "Process Chines music"
@@ -2304,8 +2271,8 @@
       "type": "n8n-nodes-base.executeCommand",
       "typeVersion": 1,
       "position": [
-        7808,
-        -896
+        7744,
+        -1184
       ],
       "id": "1c346bed-8b86-42c9-bb55-c6ae0565771c",
       "name": "Process polish music"
@@ -2496,8 +2463,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.6,
       "position": [
-        6320,
-        -368
+        6256,
+        -656
       ],
       "id": "087ef80b-fbc7-4392-8aa8-7358f7e97248",
       "name": "Google Sheets2",
@@ -2580,8 +2547,8 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.6,
       "position": [
-        10064,
-        -320
+        10000,
+        -608
       ],
       "id": "cb19d30a-db1c-4ed0-99dd-03fe1504cd93",
       "name": "upload video drive links1",
@@ -2599,8 +2566,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        4720,
-        -1136
+        4656,
+        -1424
       ],
       "id": "f415b44c-5095-47ea-86eb-8c0cf1ae30ad",
       "name": "Code5"
@@ -2615,8 +2582,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -400,
-        -928
+        -464,
+        -1216
       ],
       "id": "26d0d88c-8d61-49ae-976b-ab2d83308a0a",
       "name": "Sticky Note"
@@ -2631,8 +2598,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        336,
-        -1360
+        272,
+        -1648
       ],
       "id": "7a8b848b-a585-4dd1-87f9-4278a338856f",
       "name": "Sticky Note1"
@@ -2646,8 +2613,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        800,
-        -1296
+        736,
+        -1584
       ],
       "id": "e66b34f3-cbef-44bb-8757-3aafa2268f6e",
       "name": "Sticky Note2"
@@ -2662,8 +2629,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        1424,
-        -880
+        1360,
+        -1168
       ],
       "id": "1e930122-c85e-4ee0-b93a-269bb01bebad",
       "name": "Sticky Note3"
@@ -2678,8 +2645,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        1744,
-        -1184
+        1680,
+        -1472
       ],
       "id": "5e30af9a-df44-4420-a652-77bb8c18b2ea",
       "name": "Sticky Note4"
@@ -2694,8 +2661,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        2416,
-        -1024
+        2352,
+        -1312
       ],
       "id": "41d7d01a-5c35-4065-bf19-76f5f1ab8329",
       "name": "Sticky Note5"
@@ -2710,8 +2677,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        5200,
-        -1088
+        5136,
+        -1376
       ],
       "id": "98162a6c-3b15-4e1f-9584-4893000011d9",
       "name": "Sticky Note6"
@@ -2725,8 +2692,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        6304,
-        -1424
+        6240,
+        -1712
       ],
       "id": "9b21b065-cad1-4995-9c80-fc284446d05e",
       "name": "Sticky Note7"
@@ -2740,8 +2707,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        7504,
-        -1248
+        7440,
+        -1536
       ],
       "id": "13eef899-d04a-42b2-b2d5-1ab2704dd6f2",
       "name": "Sticky Note8"
@@ -2756,8 +2723,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        7760,
-        -1200
+        7696,
+        -1488
       ],
       "id": "24437d3c-99bf-45b6-9f4b-161f343d80d5",
       "name": "Sticky Note9"
@@ -2772,8 +2739,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        7968,
-        -1248
+        7904,
+        -1536
       ],
       "id": "5d5845e3-d3de-4baf-ba65-87e6a933cdeb",
       "name": "Sticky Note10"
@@ -2788,22 +2755,23 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        8400,
-        -1504
+        8336,
+        -1792
       ],
       "id": "1e939aa7-67ef-49f7-b5ba-7dfd1e69c228",
       "name": "Sticky Note11"
     },
     {
       "parameters": {
+        "content": "",
         "height": 976,
         "width": 1136
       },
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        8416,
-        -1248
+        8352,
+        -1536
       ],
       "id": "c86b12a0-d5ca-45ed-b728-ee155109f7d4",
       "name": "Sticky Note12"
@@ -2818,8 +2786,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        8416,
-        -256
+        8352,
+        -544
       ],
       "id": "ca46a0ce-62c3-4893-aef4-52d68f739d90",
       "name": "Sticky Note13"
@@ -2833,8 +2801,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        9984,
-        -848
+        9920,
+        -1136
       ],
       "id": "6a34137a-9957-4ba6-b27b-5010066bbb1f",
       "name": "Sticky Note14"
@@ -2849,8 +2817,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        2704,
-        -1152
+        2640,
+        -1440
       ],
       "id": "c108e833-df1a-4750-8fcd-5f3813976778",
       "name": "Sticky Note15"
@@ -2864,8 +2832,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        3136,
-        -1472
+        3072,
+        -1760
       ],
       "id": "dd2c61d6-bcb1-4427-b059-a226c8f15b27",
       "name": "Sticky Note16"
@@ -2880,8 +2848,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        3536,
-        -1472
+        3472,
+        -1760
       ],
       "id": "b9b0993c-bfc6-4b45-b891-297feb8f920b",
       "name": "Sticky Note17"
@@ -2896,8 +2864,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        3552,
-        -784
+        3488,
+        -1072
       ],
       "id": "7f2215d8-15e4-4eed-8ad0-4a00211b416e",
       "name": "Sticky Note18"
@@ -2912,8 +2880,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        3600,
-        -544
+        3536,
+        -832
       ],
       "id": "7b5929a0-7587-433a-a9a4-096e3cdeedac",
       "name": "Sticky Note19"
@@ -2928,8 +2896,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        3664,
-        32
+        3600,
+        -256
       ],
       "id": "121bd4f2-a80f-4275-9e86-e2920d8ddfad",
       "name": "Sticky Note20"
@@ -2944,11 +2912,98 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        4576,
-        -560
+        4512,
+        -848
       ],
       "id": "a5f25fe4-acd6-4d16-9bf9-a03706c8fe1e",
       "name": "Sticky Note21"
+    },
+    {
+      "parameters": {
+        "resource": "folder",
+        "name": "={{ $('Google Sheets1').item.json.MessageId }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1OyAy8lJtzJ6eG_aU8BVhu-K-IghCypCN",
+          "mode": "list",
+          "cachedResultName": "ReadyVideos",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1OyAy8lJtzJ6eG_aU8BVhu-K-IghCypCN"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        5680,
+        -976
+      ],
+      "id": "eb2c506c-e392-4e8a-9978-0c5231fe37d1",
+      "name": "Create Folder in drive",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "0pB0M8kcz3zGIDQC",
+          "name": "przebudzonezdrowie"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://www.googleapis.com/drive/v3/files",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleDriveOAuth2Api",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "q",
+              "value": "'root' in parents and trashed=false"
+            },
+            {
+              "name": "feilds",
+              "value": "files(id,name,mimeType,webViewLink,webContentLink,parents)"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "303b8f23-dc0e-4e2e-80b3-c2159b46dded",
+      "name": "Get all video files1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        5376,
+        -416
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "0pB0M8kcz3zGIDQC",
+          "name": "przebudzonezdrowie"
+        },
+        "googleDocsOAuth2Api": {
+          "id": "Zy5Qw5ZASaWUis89",
+          "name": "Google Docs account"
+        },
+        "googleDriveOAuth2Api": {
+          "id": "0pB0M8kcz3zGIDQC",
+          "name": "przebudzonezdrowie"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        5040,
+        -400
+      ],
+      "id": "23a276ba-575a-4e8b-ad3a-0607f5227162",
+      "name": "When clicking ‘Execute workflow’"
     }
   ],
   "connections": {
@@ -3427,17 +3482,6 @@
         [
           {
             "node": "upload video drive links",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Create Folder in drive": {
-      "main": [
-        [
-          {
-            "node": "Get audio and subtitles path",
             "type": "main",
             "index": 0
           }
@@ -3965,6 +4009,22 @@
             "index": 0
           }
         ]
+      ]
+    },
+    "Create Folder in drive": {
+      "main": [
+        [
+          {
+            "node": "Get audio and subtitles path",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        []
       ]
     }
   },
