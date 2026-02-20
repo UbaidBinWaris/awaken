@@ -1,0 +1,1858 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "jsCode": "let chatId;\nlet text;\nlet data;\nlet message_id;\nlet voice_id;\nlet reply_to_message_id;\nlet reply_to_message_text;\nlet message_time;\nlet status = 'null';\nlet isReply = false; \nlet isVoice = false;\n\nconst json = $input.first().json;\n\n// Safe extraction of main ID and Text\nmessage_id = json.message?.message_id || json.callback_query?.message?.message_id;\ntext = json.message?.text || json.callback_query?.message?.text;\nmessage_time = json.message?.date || json.callback_query?.message?.date;\n\nif (json.message) {\n  // User sent a normal message\n  chatId = json.message.chat.id;\n\n  // --- 1. CHECK FOR VOICE ---\n  if (json.message.voice) {\n    isVoice = true;\n    voice_id = json.message.voice.file_id;\n  }\n\n  // --- 2. CHECK FOR REPLY (Independent of Voice) ---\n  // We check if 'reply_to_message' exists in the JSON object\n  if (json.message.reply_to_message) {\n    isReply = true;\n    reply_to_message_id = json.message.reply_to_message.message_id;\n    // Note: The reply might be text, or it might be a caption, or empty if it's a media file without caption\n    reply_to_message_text = json.message.reply_to_message.text || json.message.reply_to_message.caption; \n  }\n  \n} else if (json.callback_query) {\n  // User clicked a button\n  chatId = json.callback_query.message.chat.id;\n  data = json.callback_query.data; \n}\n\nreturn [{\n  json: {\n    chatId,\n    text,\n    message_id,\n    data,\n    voice_id,\n    reply_to_message_text,\n    reply_to_message_id,\n    message_time,\n    status,\n    isVoice,\n    isReply\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -5056,
+        -928
+      ],
+      "id": "c6e62b7f-3fd7-49d7-8fc2-bc3c51673b2a",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "updates": [
+          "callback_query",
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -5248,
+        -928
+      ],
+      "id": "ea4fe3d6-08d6-4f8d-90dc-e5da7196999a",
+      "name": "Telegram Trigger",
+      "webhookId": "d380c1dc-4e2b-4794-a38d-0c9f8a481d23",
+      "credentials": {
+        "telegramApi": {
+          "id": "QG2tqak04RzYOecM",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "speech",
+        "operation": "speechToText",
+        "additionalOptions": {},
+        "requestOptions": {}
+      },
+      "type": "@elevenlabs/n8n-nodes-elevenlabs.elevenLabs",
+      "typeVersion": 1,
+      "position": [
+        -2864,
+        -1072
+      ],
+      "id": "481a0e22-4929-4446-bf0e-277e6067f8d8",
+      "name": "ElevenLabs5",
+      "credentials": {
+        "elevenLabsApi": {
+          "id": "2z5dhO6nJHpn8VbP",
+          "name": "ElevenLabs account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "=/home/node/n8n-uploads/audio.mp3",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        -2528,
+        -768
+      ],
+      "id": "18d1d13b-041f-4707-a7a3-3b47df4a4056",
+      "name": "upload english audio3"
+    },
+    {
+      "parameters": {
+        "url": "https://www.googleapis.com/drive/v3/files",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleDriveOAuth2Api",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "q",
+              "value": "'1LjGyXNV5ho-E2v-YQX7BKKyRzSjllwz3' in parents and mimeType contains 'video' and trashed=false"
+            },
+            {
+              "name": "feilds",
+              "value": "files(id,name,mimeType,webViewLink,webContentLink)"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "38b8ff15-ad43-4163-ba2c-6a8b6a2b66ff",
+      "name": "Get all video files3",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -1840,
+        -1072
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "0pB0M8kcz3zGIDQC",
+          "name": "przebudzonezdrowie"
+        },
+        "googleDocsOAuth2Api": {
+          "id": "Zy5Qw5ZASaWUis89",
+          "name": "Google Docs account"
+        },
+        "googleDriveOAuth2Api": {
+          "id": "0pB0M8kcz3zGIDQC",
+          "name": "przebudzonezdrowie"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get the array of files from previous node output\nconst files = $input.first().json.files;\n\n// Ensure files exist\nif (!files || files.length === 0) {\n  throw new Error(\"No video files found in the Google Drive folder.\");\n}\n\n// Pick a random file\nconst randomFile = files[Math.floor(Math.random() * files.length)];\n\n// Construct a direct download link for that video\nconst downloadLink = `https://drive.google.com/uc?id=${randomFile.id}&export=download`;\n\n// Return the selected file info\nreturn [\n  {\n    json: {\n      id: randomFile.id,\n      name: randomFile.name,\n      mimeType: randomFile.mimeType,\n      downloadLink,\n      viewLink: `https://drive.google.com/file/d/${randomFile.id}/view`\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1584,
+        -1072
+      ],
+      "id": "79ebca89-9f6d-46db-9127-0f83bcf84ece",
+      "name": "select randome video2"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.downloadLink }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -1392,
+        -1072
+      ],
+      "id": "ba1419ef-d9ee-4ef0-9ae4-cea235f1ee38",
+      "name": "download video2"
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "/home/node/n8n-uploads/Video.mp4",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        -1184,
+        -1072
+      ],
+      "id": "20b3700f-75ab-4220-99d4-99b633dded6d",
+      "name": "uplod video2"
+    },
+    {
+      "parameters": {
+        "command": "ffmpeg -y -loglevel error -stream_loop -1 \\\n-i /home/node/n8n-uploads/Video.mp4 \\\n-i /home/node/n8n-uploads/audio.mp3 \\\n-filter_complex \"[0:v]setpts=PTS-STARTPTS[v];[v]subtitles='/home/node/n8n-uploads/subtitles.srt':force_style='FontName=Poppins,FontSize=11,PrimaryColour=&H0000FFFF,BackColour=&H000000FF,Outline=1,Shadow=0,BorderStyle=3,MarginV=30'[vout]\" \\\n-map \"[vout]\" -map 1:a \\\n-c:v libx264 -b:v 1600k -maxrate 1800k -bufsize 3600k \\\n-c:a aac -b:a 128k -preset slower -shortest \\\n/home/node/n8n-uploads/English-working.mp4\n"
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        -144,
+        -896
+      ],
+      "id": "8c1ca309-217f-461d-893b-1c3471675e3a",
+      "name": "process english video2"
+    },
+    {
+      "parameters": {
+        "command": "ffmpeg -y -loglevel error \\\n-i /home/node/n8n-uploads/English-working.mp4 \\\n-i /home/node/n8n-uploads/music.mp3 \\\n-filter_complex \"\\\n[1:a]volume=0.1,aloop=loop=-1:size=2e+09[bg]; \\\n[0:a][bg]amix=inputs=2:duration=first:dropout_transition=3[aout]\" \\\n-map 0:v -map \"[aout]\" \\\n-c:v copy -c:a aac -b:a 128k -shortest \\\n/home/node/n8n-uploads/English-output.mp4\n"
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        80,
+        -896
+      ],
+      "id": "51ab2a5a-7ae9-443a-b303-26fc6a9f9eac",
+      "name": "Process English Music2"
+    },
+    {
+      "parameters": {
+        "operation": "sendVideo",
+        "chatId": "={{ $('Code').first().json.chatId }}",
+        "binaryData": true,
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        2016,
+        -464
+      ],
+      "id": "ec28e713-3e93-4c05-a808-63eefc956a3e",
+      "name": "Telegram15",
+      "webhookId": "86f93f1d-7583-452e-9f64-a23e88abff94",
+      "credentials": {
+        "telegramApi": {
+          "id": "QG2tqak04RzYOecM",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "/home/node/n8n-uploads/subtitles.srt",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        -2384,
+        -1072
+      ],
+      "id": "4d0228c9-d612-4804-99cf-90aad28995de",
+      "name": "upload english subtitles2"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -432,
+        -912
+      ],
+      "id": "e8cff285-5dae-4f43-8d12-cc674a9b5163",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "jsCode": "const transcription = $json; // Polish transcription\n\nfunction formatTime(seconds) {\n  const date = new Date(null);\n  date.setSeconds(seconds);\n  const ms = Math.floor((seconds % 1) * 1000);\n  return date.toISOString().substr(11, 8) + ',' + ms.toString().padStart(3, '0');\n}\n\nconst words = transcription.words.filter(w => w.type === 'word');\n// Replace line 11 with this:\nif (!words.length) {\n  return [{ binary: { data: { data: Buffer.from(''), mimeType: 'application/x-subrip', fileName: 'subtitles.srt' } } }];\n}\nlet srt = '';\nlet counter = 1;\nconst maxWordsPerBlock = 5;\n\nfor (let i = 0; i < words.length; i += maxWordsPerBlock) {\n  const blockWords = words.slice(i, i + maxWordsPerBlock);\n  const start = formatTime(blockWords[0].start);\n  const end = formatTime(blockWords[blockWords.length - 1].end);\n  srt += `${counter}\\n${start} --> ${end}\\n${blockWords.map(w => w.text).join(' ')}\\n\\n`;\n  counter++;\n}\n\nreturn [\n  {\n    binary: {\n      data: {\n        data: Buffer.from(srt),\n        mimeType: 'application/x-subrip',\n        fileName: 'Polish.srt'\n      }\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2656,
+        -1072
+      ],
+      "id": "e424547d-7aaa-406e-8762-c490208fd068",
+      "name": "Code16"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Get the array of files from previous node output\nconst files = $input.first().json.files;\n\n// Ensure files exist\nif (!files || files.length === 0) {\n  throw new Error(\"No video files found in the Google Drive folder.\");\n}\n\n// Pick a random file\nconst randomFile = files[Math.floor(Math.random() * files.length)];\n\n// Construct a direct download link for that video\nconst downloadLink = `https://drive.google.com/uc?id=${randomFile.id}&export=download`;\n\n// Return the selected file info\nreturn [\n  {\n    json: {\n      id: randomFile.id,\n      name: randomFile.name,\n      mimeType: randomFile.mimeType,\n      downloadLink,\n      viewLink: `https://drive.google.com/file/d/${randomFile.id}/view`\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1600,
+        -768
+      ],
+      "id": "69e153c5-289c-45a8-9acb-319571fe6476",
+      "name": "select randome video3"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.downloadLink }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -1408,
+        -768
+      ],
+      "id": "085e1f66-4a8a-400f-99ca-cd01859d07d3",
+      "name": "download video3"
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "/home/node/n8n-uploads/music.mp3",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        -1200,
+        -768
+      ],
+      "id": "29c2f4be-9350-4a7d-bd45-61be6ea573af",
+      "name": "uplod video3"
+    },
+    {
+      "parameters": {
+        "url": "https://www.googleapis.com/drive/v3/files",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleDriveOAuth2Api",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "q",
+              "value": "'1PzSp_0zGPhNd36D738QGEtDXzfNYxgoB' in parents and mimeType contains 'audio' and trashed=false"
+            },
+            {
+              "name": "fields",
+              "value": "files(id,name,mimeType,webViewLink,webContentLink)"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "499fd072-639c-4ae5-8d6c-42cd96e116af",
+      "name": "Get all audio files",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -1840,
+        -768
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "55GCyXRxaWQ9Y4o3",
+          "name": "Videos Account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "9a74da06-7a57-441d-ac38-27bcd8ae9ca9",
+              "leftValue": "={{ $json.isVoice }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "12019cd8-8720-4aca-bc2f-ae81c02dda07",
+              "leftValue": "={{ $json.isReply }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "false",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -4832,
+        -928
+      ],
+      "id": "ac60fba4-9377-44b9-bb8d-9a79b308550f",
+      "name": "If8"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Code').first().json.chatId }}",
+        "text": "Please send the voice message directy ",
+        "replyMarkup": "inlineKeyboard",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -4576,
+        -688
+      ],
+      "id": "c4bbb243-e03c-4625-8d57-581cdcfcccef",
+      "name": "Telegram17",
+      "webhookId": "86f93f1d-7583-452e-9f64-a23e88abff94",
+      "credentials": {
+        "telegramApi": {
+          "id": "QG2tqak04RzYOecM",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Code').first().json.chatId }}",
+        "text": "Please wait for a while your video is processing\n\nIt may take few minutes.",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -4528,
+        -896
+      ],
+      "id": "f35d0aab-bbf4-4808-afac-18386841603d",
+      "name": "Telegram18",
+      "webhookId": "86f93f1d-7583-452e-9f64-a23e88abff94",
+      "credentials": {
+        "telegramApi": {
+          "id": "QG2tqak04RzYOecM",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "command": "stat -c%s /home/node/n8n-uploads/English-output.mp4\n"
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        416,
+        -896
+      ],
+      "id": "1dff402c-33a7-41c3-bea4-403bee0fcfde",
+      "name": "Process polish video5"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "07524849-457e-45f1-9c0b-1788f2bd4f4c",
+              "leftValue": "={{ $json.stdout.toNumber() }}",
+              "rightValue": 51379224,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        672,
+        -896
+      ],
+      "id": "94628610-2a76-43cf-9060-7657bfeed752",
+      "name": "If9"
+    },
+    {
+      "parameters": {
+        "fileSelector": "/home/node/n8n-uploads/English-output.mp4",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        992,
+        -640
+      ],
+      "id": "8b877f5b-0658-449e-86b7-c480266e3f8c",
+      "name": "download english video4"
+    },
+    {
+      "parameters": {
+        "fileSelector": "/home/node/n8n-uploads/English-output.mp4",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        1024,
+        -1040
+      ],
+      "id": "20a81951-e623-45ef-9c3a-3698542d1150",
+      "name": "download english video5"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Get audio and subtitles path').first().json.ChatId }}",
+        "text": "=The generated video is too large to be sent via Telegram.   You can download it from the link below \n\n{{ $json[\"downloadLink\"] }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1808,
+        -928
+      ],
+      "id": "14715022-eefd-4580-89c2-4a219ddb644f",
+      "name": "Telegram14",
+      "webhookId": "86f93f1d-7583-452e-9f64-a23e88abff94",
+      "credentials": {
+        "telegramApi": {
+          "id": "QG2tqak04RzYOecM",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "deleteMessage",
+        "chatId": "={{ $('Code').first().json.chatId }}",
+        "messageId": "={{ $('Telegram18').item.json.result.message_id }}"
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1824,
+        -624
+      ],
+      "id": "31113ab0-86fa-4c20-919b-5387630a0eb7",
+      "name": "Telegram20",
+      "webhookId": "86f93f1d-7583-452e-9f64-a23e88abff94",
+      "credentials": {
+        "telegramApi": {
+          "id": "QG2tqak04RzYOecM",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1ygP78jhkxv7p18dKCjtvuH8Z__Dw6outclH7OvfCuw8",
+          "mode": "list",
+          "cachedResultName": "AWAKEN - GixiAI",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ygP78jhkxv7p18dKCjtvuH8Z__Dw6outclH7OvfCuw8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 566677533,
+          "mode": "list",
+          "cachedResultName": "n8n-sheet",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ygP78jhkxv7p18dKCjtvuH8Z__Dw6outclH7OvfCuw8/edit#gid=566677533"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "ok",
+              "displayName": "ok",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "result",
+              "displayName": "result",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "myNewField",
+              "displayName": "myNewField",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "video_link",
+              "displayName": "video_link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "audio_link",
+              "displayName": "audio_link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "subtitles_link",
+              "displayName": "subtitles_link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "background_video_link",
+              "displayName": "background_video_link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "background_music_link",
+              "displayName": "background_music_link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "message_id",
+              "displayName": "message_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "chat_id",
+              "displayName": "chat_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "voice_id",
+              "displayName": "voice_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        3056,
+        -704
+      ],
+      "id": "4589c94e-450b-4c9e-b70d-67bf21d03a51",
+      "name": "upload video drive links2",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "7qtlUMiyrLX33NYW",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "folder",
+        "name": "={{ $('Code').item.json.message_id }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "16bXhc1Jf9HgE1W1IvxtqARGxxWk5u2mX",
+          "mode": "list",
+          "cachedResultName": "Subtitles",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/16bXhc1Jf9HgE1W1IvxtqARGxxWk5u2mX"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -3856,
+        -896
+      ],
+      "id": "669d18a5-7b91-460c-8e56-0260bece695a",
+      "name": "Create Subtitles Folder",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "0pB0M8kcz3zGIDQC",
+          "name": "przebudzonezdrowie"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "folder",
+        "name": "={{ $('Code').item.json.message_id }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1TiDY9PiWzbUJjWzIy4zZKapYXTVkLN4i",
+          "mode": "list",
+          "cachedResultName": "01 - Video ",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1TiDY9PiWzbUJjWzIy4zZKapYXTVkLN4i"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -4064,
+        -896
+      ],
+      "id": "02b98f70-0bfe-4c12-b1bc-96dbe22bccb2",
+      "name": "Create Video Folder",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "0pB0M8kcz3zGIDQC",
+          "name": "przebudzonezdrowie"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "folder",
+        "name": "={{ $('Code').item.json.message_id }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "15f5cMEFS0G3PcFy0S8E-h3eW064Bmi0A",
+          "mode": "list",
+          "cachedResultName": "Audio",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/15f5cMEFS0G3PcFy0S8E-h3eW064Bmi0A"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -4224,
+        -896
+      ],
+      "id": "9535ab43-7dcd-49bb-ba82-a64950e4112d",
+      "name": "Create Audio Folder",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "0pB0M8kcz3zGIDQC",
+          "name": "przebudzonezdrowie"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "fileId": "={{ $('Telegram Trigger').item.json.message.voice.file_id }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -3184,
+        -896
+      ],
+      "id": "9bd97645-9935-4590-9af7-998058105742",
+      "name": "Download Audio file",
+      "webhookId": "781d4cf1-1bb7-4340-8954-1286b1fd13f6",
+      "credentials": {
+        "telegramApi": {
+          "id": "QG2tqak04RzYOecM",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "Subtitles.srt",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "={{ $('Create Subtitles Folder').item.json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -2128,
+        -1072
+      ],
+      "id": "f8e96d83-8642-40aa-bf8a-4ec57a2020ca",
+      "name": "Upload Subtitles",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "0pB0M8kcz3zGIDQC",
+          "name": "przebudzonezdrowie"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "backgroundvideo.mp4",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "={{ $('Create BackgroundVideo Folder').item.json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -800,
+        -1024
+      ],
+      "id": "1c44fe30-78bf-4184-8faf-da6aa007267e",
+      "name": "Upload Background Video",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "0pB0M8kcz3zGIDQC",
+          "name": "przebudzonezdrowie"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "folder",
+        "name": "={{ $('Code').item.json.message_id }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "16bXhc1Jf9HgE1W1IvxtqARGxxWk5u2mX",
+          "mode": "list",
+          "cachedResultName": "Subtitles",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/16bXhc1Jf9HgE1W1IvxtqARGxxWk5u2mX"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -3632,
+        -896
+      ],
+      "id": "6fed2722-85d7-4d35-836b-6d998ed0d658",
+      "name": "Create BackgroundVideo Folder",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "0pB0M8kcz3zGIDQC",
+          "name": "przebudzonezdrowie"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "raw_Audio.mp3",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "={{ $('Create Audio Folder').item.json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -2128,
+        -768
+      ],
+      "id": "8e92d7ba-9747-48d8-86c3-2e8b8bad9928",
+      "name": "upload Audio",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "0pB0M8kcz3zGIDQC",
+          "name": "przebudzonezdrowie"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "name": "backgroundmusic.mp3",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "={{ $('Create BackgroundVideo Folder').item.json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -800,
+        -816
+      ],
+      "id": "0f2c3b58-9d9d-45d3-9ba0-04aa91b90330",
+      "name": "Upload Background Music",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "0pB0M8kcz3zGIDQC",
+          "name": "przebudzonezdrowie"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 512,
+        "width": 976,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -5328,
+        -1008
+      ],
+      "id": "88e5975f-21ee-4244-8c72-fd672db53dc8",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 320,
+        "width": 1008,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -4272,
+        -960
+      ],
+      "id": "acba5b69-8c1d-4737-9fe3-a7afc63c646d",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 576,
+        "width": 256,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -2208,
+        -1136
+      ],
+      "id": "c5e9c680-d3df-4fe4-9973-c7e10f9100f6",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 464,
+        "width": 320,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -912,
+        -1072
+      ],
+      "id": "dbf79de5-cd43-4021-8a27-c2d684ce90a9",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 336,
+        "width": 1072,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -192,
+        -1024
+      ],
+      "id": "049ae3ff-eed0-43e1-91b5-ba88d056d13e",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 592,
+        "width": 1008,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -3232,
+        -1152
+      ],
+      "id": "14b157e2-5346-4dc6-b3c1-65cac0dd8a51",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 592,
+        "width": 1008,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1936,
+        -1136
+      ],
+      "id": "16c9840d-2f43-4407-a344-87018da90689",
+      "name": "Sticky Note6"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 224,
+        "width": 208,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -2912,
+        -1120
+      ],
+      "id": "671dcf39-79cd-4f0f-ba8d-40ff67fac464",
+      "name": "Sticky Note7"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 192,
+        "width": 256,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -4640,
+        -720
+      ],
+      "id": "fe5584f7-106f-43ef-b773-b5c65fc136d0",
+      "name": "Sticky Note8"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 880,
+        "width": 480,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1728,
+        -1136
+      ],
+      "id": "85562339-2098-4e51-b335-d01aadd0afd7",
+      "name": "Sticky Note9"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 256,
+        "width": 400,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2896,
+        -768
+      ],
+      "id": "dae6cd7d-dc8a-4e09-a426-1fd1e28e4f5d",
+      "name": "Sticky Note10"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 368,
+        "width": 416,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1248,
+        -976
+      ],
+      "id": "dcca98c9-5e3a-4d4d-9bd3-1265b8a26ce1",
+      "name": "Sticky Note11"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 336,
+        "width": 272
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -528,
+        -1024
+      ],
+      "id": "98f78d1f-5bc7-4ff3-9c46-001fb61af179",
+      "name": "Sticky Note12"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 704,
+        "width": 320,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        896,
+        -1168
+      ],
+      "id": "b4d71f68-30fb-487f-8c8c-97201100c08e",
+      "name": "Sticky Note13"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 512,
+        "width": 224
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1648,
+        -1104
+      ],
+      "id": "1c69aee5-50e2-4934-819f-69aed434e66e",
+      "name": "Sticky Note14"
+    },
+    {
+      "parameters": {
+        "name": "video.mp4",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "={{ $('Create final-Video Folder').item.json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1472,
+        -752
+      ],
+      "id": "60788f0f-c890-4646-b1ef-c1286d396198",
+      "name": "upload Video",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "0pB0M8kcz3zGIDQC",
+          "name": "przebudzonezdrowie"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "folder",
+        "name": "={{ $('Code').item.json.message_id }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "16bXhc1Jf9HgE1W1IvxtqARGxxWk5u2mX",
+          "mode": "list",
+          "cachedResultName": "Subtitles",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/16bXhc1Jf9HgE1W1IvxtqARGxxWk5u2mX"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -3408,
+        -896
+      ],
+      "id": "4e91f056-0337-4c1a-8002-91b47db9c244",
+      "name": "Create final-Video Folder",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "0pB0M8kcz3zGIDQC",
+          "name": "przebudzonezdrowie"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "deleteMessage",
+        "chatId": "={{ $('Code').first().json.chatId }}",
+        "messageId": "={{ $('Telegram18').item.json.result.message_id }}"
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1984,
+        -1072
+      ],
+      "id": "addc7165-f5fe-4c02-8a8f-b9339bac1517",
+      "name": "Telegram",
+      "webhookId": "86f93f1d-7583-452e-9f64-a23e88abff94",
+      "credentials": {
+        "telegramApi": {
+          "id": "QG2tqak04RzYOecM",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        2416,
+        -704
+      ],
+      "id": "4665d4dd-7cfb-4db8-a8f5-6d3006614321",
+      "name": "Merge1"
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 336,
+        "width": 496
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2320,
+        -816
+      ],
+      "id": "9a70a65e-1d7b-4296-a8ca-d6bfb22bd410",
+      "name": "Sticky Note15"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Helper function to safely fetch data without crashing n8n if a node is missing\nfunction getSafeLink(nodeName, property) {\n  try {\n    return $(nodeName).first().json[property];\n  } catch (error) {\n    return null; // Returns null if the node doesn't exist or didn't run\n  }\n}\n\n// 1. Fetching base details safely\nlet message_id = getSafeLink('Code', 'message_id');\nlet chat_id = getSafeLink('Code', 'chatId');\nlet voice_id = getSafeLink('Code', 'voice_id');\n\n// 2. Fetching the video link safely with your fallback logic\nlet video_link = getSafeLink('Upload Video', 'webViewLink') || getSafeLink('upload video 2', 'webViewLink'); \n\n// 3. Fetching the rest safely\nlet subtitles_link = getSafeLink('Upload Subtitles', 'webViewLink');\nlet audio_link = getSafeLink('upload Audio', 'webViewLink'); \nlet background_video_link = getSafeLink('Upload Background Video', 'webViewLink');\nlet background_music_link = getSafeLink('Upload Background Music', 'webViewLink');\n\nreturn [{\n  json: {\n    video_link: video_link,\n    audio_link: audio_link,\n    subtitles_link: subtitles_link,\n    background_video_link: background_video_link,\n    background_music_link: background_music_link,\n    message_id: message_id,\n    chat_id: chat_id,\n    voice_id: voice_id\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2640,
+        -704
+      ],
+      "id": "8cb1214d-fed3-4044-a0ec-12dd170eb852",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "name": "video.mp4",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "={{ $('Create final-Video Folder').item.json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1312,
+        -912
+      ],
+      "id": "5b6e6be2-fae1-403d-96d3-3a8562ae02e1",
+      "name": "upload video 2",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "0pB0M8kcz3zGIDQC",
+          "name": "przebudzonezdrowie"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "If8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ElevenLabs5": {
+      "main": [
+        [
+          {
+            "node": "Code16",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "upload english audio3": {
+      "main": [
+        [
+          {
+            "node": "upload Audio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get all video files3": {
+      "main": [
+        [
+          {
+            "node": "select randome video2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "select randome video2": {
+      "main": [
+        [
+          {
+            "node": "download video2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "download video2": {
+      "main": [
+        [
+          {
+            "node": "uplod video2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "uplod video2": {
+      "main": [
+        [
+          {
+            "node": "Upload Background Video",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "process english video2": {
+      "main": [
+        [
+          {
+            "node": "Process English Music2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process English Music2": {
+      "main": [
+        [
+          {
+            "node": "Process polish video5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram15": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "upload english subtitles2": {
+      "main": [
+        [
+          {
+            "node": "Upload Subtitles",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "process english video2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code16": {
+      "main": [
+        [
+          {
+            "node": "upload english subtitles2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "select randome video3": {
+      "main": [
+        [
+          {
+            "node": "download video3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "download video3": {
+      "main": [
+        [
+          {
+            "node": "uplod video3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "uplod video3": {
+      "main": [
+        [
+          {
+            "node": "Upload Background Music",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get all audio files": {
+      "main": [
+        [
+          {
+            "node": "select randome video3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If8": {
+      "main": [
+        [
+          {
+            "node": "Telegram18",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Telegram17",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram18": {
+      "main": [
+        [
+          {
+            "node": "Create Audio Folder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process polish video5": {
+      "main": [
+        [
+          {
+            "node": "If9",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If9": {
+      "main": [
+        [
+          {
+            "node": "download english video5",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "download english video4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "download english video4": {
+      "main": [
+        [
+          {
+            "node": "Telegram15",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "upload Video",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Telegram20",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "download english video5": {
+      "main": [
+        [
+          {
+            "node": "upload video 2",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram14": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Subtitles Folder": {
+      "main": [
+        [
+          {
+            "node": "Create BackgroundVideo Folder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Video Folder": {
+      "main": [
+        [
+          {
+            "node": "Create Subtitles Folder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Audio Folder": {
+      "main": [
+        [
+          {
+            "node": "Create Video Folder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Audio file": {
+      "main": [
+        [
+          {
+            "node": "ElevenLabs5",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "upload english audio3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload Subtitles": {
+      "main": [
+        [
+          {
+            "node": "Get all video files3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload Background Video": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create BackgroundVideo Folder": {
+      "main": [
+        [
+          {
+            "node": "Create final-Video Folder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "upload Audio": {
+      "main": [
+        [
+          {
+            "node": "Get all audio files",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload Background Music": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "upload Video": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Create final-Video Folder": {
+      "main": [
+        [
+          {
+            "node": "Download Audio file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "upload video drive links2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "upload video 2": {
+      "main": [
+        [
+          {
+            "node": "Telegram14",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "eaea15f16ebcf1afd3a6c3135229f6acb9c554e01412133d53e7711889245f20"
+  }
+}
