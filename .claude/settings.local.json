@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -E \"\\\\.\\(mp4|mp3|mpeg|srt|txt\\)$\")"
+    ]
+  }
+}

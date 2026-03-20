@@ -1,0 +1,34 @@
+timeout 300 ffmpeg -y \
+-stream_loop -1 \
+-i /home/node/n8n-uploads/Video.mp4 \
+-i /home/node/n8n-uploads/audio.mp3 \
+-filter_complex "[0:v]subtitles=/home/node/n8n-uploads/subtitles.srt:force_style='FontSize=11,PrimaryColour=&H0000FFFF,BackColour=&H80000000,BorderStyle=3,Outline=1,MarginV=30'[vout]" \
+-map "[vout]" -map 1:a \
+-c:v libx264 -crf 23 -preset veryfast -threads 2 \
+-c:a aac -b:a 128k \
+-shortest \
+/home/node/n8n-uploads/English-working.mp4
+
+
+
+timeout 300 ffmpeg -y \
+-stream_loop -1 \
+-i /home/node/n8n-uploads/Video.mp4 \
+-i /home/node/n8n-uploads/audio.mp3 \
+-filter_complex "[0:v]subtitles=/home/node/n8n-uploads/subtitles.srt:force_style='FontSize=11,FontName=Poppins,PrimaryColour=&H0000FFFF,BackColour=&H80000000,BorderStyle=3,Outline=1,MarginV=30'[vout]" \
+-map "[vout]" -map 1:a \
+-c:v libx264 -crf 28 -preset ultrafast -threads 2 \
+-c:a aac -b:a 128k \
+-shortest \
+/home/node/n8n-uploads/English-working.mp4
+
+timeout 300 ffmpeg -y \
+-stream_loop -1 \
+-i /home/node/n8n-uploads/Video.mp4 \
+-i /home/node/n8n-uploads/audio.mp3 \
+-filter_complex "[0:v]subtitles=/home/node/n8n-uploads/subtitles.srt:force_style='FontSize=11,PrimaryColour=&H0000FFFF,BackColour=&H80000000,BorderStyle=3,Outline=1,MarginV=30'[vout]" \
+-map "[vout]" -map 1:a \
+-c:v libx264 -crf 23 -preset veryfast -threads 2 \
+-c:a aac -b:a 128k \
+-shortest \
+/home/node/n8n-uploads/English-working.mp4
