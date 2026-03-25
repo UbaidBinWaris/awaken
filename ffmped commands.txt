@@ -1,0 +1,23 @@
+timeout 300 ffmpeg -y \ -stream_loop -1 \ -i /home/gixiai/n8n-uploads/Video.mp4 \ -i /home/gixiai/n8n-uploads/audio.mp3 \ -filter_complex "[0:v]subtitles=/home/gixiai/n8n-uploads/subtitles.srt:force_style='FontSize=11,PrimaryColour=&H0000FFFF,BackColour=&H80000000,BorderStyle=3,Outline=1,MarginV=30'[vout]" \ -map "[vout]" -map 1:a \ -c:v libx264 -crf 25 -preset veryfast -threads 2 \ -c:a aac -b:a 128k \ -shortest \ /home/gixiai/n8n-uploads/English-working.mp4
+
+/home/gixiai/n8n-uploads/Video.mp4
+
+ffmpeg -y -loglevel error \ -i /home/gixiai/n8n-uploads/English-working.mp4 \ -i /home/gixiai/n8n-uploads/music.mp3 \ -filter_complex "[1:a]volume=0.2,aloop=loop=-1:size=2e+09[bg];[0:a][bg]amix=inputs=2:duration=first:dropout_transition=3[aout]" \ -map 0:v -map "[aout]" \ -c:v copy -c:a aac -b:a 128k -shortest \ /home/gixiai/n8n-uploads/English-output.mp4
+
+timeout 300 ffmpeg -y -stream_loop -1 -i /home/gixiai/n8n-uploads/Video.mp4 -i /home/gixiai/n8n-uploads/audio.mp3 -filter_complex "[0:v]subtitles=/home/gixiai/n8n-uploads/subtitles.srt:force_style='FontSize=11,PrimaryColour=&H0000FFFF,BackColour=&H80000000,BorderStyle=3,Outline=1,MarginV=30'[vout]" -map "[vout]" -map 1:a -c:v libx264 -crf 28 -preset ultrafast -threads 2 -c:a aac -b:a 128k -shortest /var/www/videos/working.mp4
+
+
+ffmpeg -y -loglevel error -i /home/gixiai/n8n-uploads/English-working.mp4 -i /home/gixiai/n8n-uploads/music.mp3 -filter_complex "[1:a]volume=0.2,aloop=loop=-1:size=2e+09[bg];[0:a][bg]amix=inputs=2:duration=first:dropout_transition=3[aout]" -map 0:v -map "[aout]" -c:v copy -c:a aac -b:a 128k -shortest /var/www/videos/output_temp.mp4 && mv -f /var/www/videos/output_temp.mp4 /var/www/videos/output.mp4
+
+
+
+ffmpeg -y -loglevel error -i /var/www/videos/working.mp4 -i /home/gixiai/n8n-uploads/music.mp3 -filter_complex "[1:a]volume=0.2,aloop=loop=-1:size=2e+09[bg]; [0:a][bg]amix=inputs=2:duration=first:dropout_transition=3[aout]" -map 0:v -map "[aout]" -c:v copy -c:a aac -b:a 128k -shortest /var/www/videos/output.mp4
+
+ffmpeg -y -loglevel error -i /var/www/videos/working.mp4 -stream_loop -1 -i /home/gixiai/n8n-uploads/music.mp3 -filter_complex "[1:a]volume=0.2[bg];[0:a][bg]amix=inputs=2:duration=first:dropout_transition=3[aout]" -map 0:v -map "[aout]" -c:v libx264 -b:v 1500k -maxrate 1500k -bufsize 3000k -c:a aac -b:a 128k -shortest /var/www/videos/output.mp4
+
+
+
+
+ffmpeg -y -loglevel error -stream_loop -1 -i /home/gixiai/n8n-uploads/Video.mp4 -i /home/gixiai/n8n-uploads/audio.mp3 -filter_complex "[0:v]setpts=PTS-STARTPTS[v];[v]subtitles='/home/gixiai/n8n-uploads/subtitles.srt':force_style='FontName=Poppins,FontSize=11,PrimaryColour=&H0000FFFF,BackColour=&H000000FF,Outline=1,Shadow=0,BorderStyle=3,MarginV=30'[vout]" -map "[vout]" -map 1:a -c:v libx264 -b:v 1600k -maxrate 1800k -bufsize 3600k -c:a aac -b:a 128k -preset veryfast -shortest /var/www/videos/working.mp4
+
+timeout 300 ffmpeg -y -stream_loop -1 -i /home/gixiai/n8n-uploads/Video.mp4 -i /home/gixiai/n8n-uploads/audio.mp3 -filter_complex "[0:v]subtitles=/home/gixiai/n8n-uploads/subtitles.srt:force_style='FontSize=11,PrimaryColour=&H0000FFFF,BackColour=&H80000000,BorderStyle=3,Outline=1,MarginV=30'[vout]" -map "[vout]" -map 1:a -c:v libx264 -crf 28 -preset ultrafast -threads 2 -c:a aac -b:a 128k -shortest /var/www/videos/working.mp4
